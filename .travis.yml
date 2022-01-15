@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+node_js:
+- 15
+cache: npm
+branches:
+  only:
+  - src
+script:
+- yuque-hexo-lyrics clean
+- yuque-hexo-lyrics sync
+- hexo generate
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  target-brach: master
+  on:
+    branch: src
+  local-dir: public
