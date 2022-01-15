@@ -2,7 +2,7 @@ name: deploy
 on:
   push:
     branches:
-      - src
+      - main
   repository_dispatch:
     types: [deploy]
 jobs:
@@ -36,8 +36,10 @@ jobs:
       - name: Generate files
         run: hexo generate
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: master
-          publish_dir: ./public
+        run: hexo -d
+#      - name: Deploy
+#        uses: peaceiris/actions-gh-pages@v3
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_branch: master
+#          publish_dir: ./public
