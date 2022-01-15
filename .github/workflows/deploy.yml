@@ -38,7 +38,7 @@ jobs:
       - name: Deploy
         run: |
           git config --global user.email "biaogejiushibiao@outlook.com"
-          git config --global user.name "mikeygithu"
+          git config --global user.name "mikeygithub"
           hexo d
 #      - name: Deploy
 #        uses: peaceiris/actions-gh-pages@v3
