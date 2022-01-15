@@ -1,0 +1,780 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Mikey">
+  <meta name="keywords" content="">
+  
+  <title>刷题记录-递归回溯 - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mikeygithub.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"74301a15e5497361e93588eeee69f4b2","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="麦奇" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-image"></i>
+                照片
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/todo/">
+                <i class="iconfont icon-plan"></i>
+                代办
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-briefcase"></i>
+                其他
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://www.yuque.com/aichihongdouheyumi/blog">
+                    
+                    在线创作
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于麦奇
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://bing.ioliu.cn/v1/rand') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="刷题记录-递归回溯">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Mikey
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-19 17:24" pubdate>
+        2020年11月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      59
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">刷题记录-递归回溯</h1>
+            
+            <div class="markdown-body">
+              <p><img src="https://cdn.nlark.com/yuque/0/2022/png/2630542/1642085975362-3b1cc0ed-9a9e-441c-b8f3-e82e8b17c185.png#clientId=ue92fd98c-7fe3-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=405&id=uecd3b83a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=810&originWidth=1080&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=255076&status=done&style=none&taskId=ud338023a-30b8-4506-aa30-02215205dda&title=&width=540" srcset="/img/loading.gif" lazyload alt="image.png"><br>​</p>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h1 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h1><blockquote>
+<p>回溯算法实际上一个类似枚举的搜索尝试过程，主要是在搜索尝试过程中寻找问题的解，当发现已不满足求解条件时，就“回溯”返回，尝试别的路径。回溯法是一种选优搜索法，按选优条件向前搜索，以达到目标。但当探索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，而满足回溯条件的某个状态的点称为“回溯点”。许多复杂的，规模较大的问题都可以使用回溯法，有“通用解题方法”的美称。</p>
+</blockquote>
+<h1 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h1><h2 id="​组合-中等"><a href="#​组合-中等" class="headerlink" title="​组合(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/combinations/">组合(中等)</a></h2><blockquote>
+<p>给定两个整数 n 和 k，返回 1 … n 中所有可能的 k 个数的组合。</p>
+</blockquote>
+<p>示例:</p>
+<figure class="highlight inform7"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs inform7">输入:n = 4, k = 2<br>输出:<br><span class="hljs-comment">[</span><br><span class="hljs-comment">    <span class="hljs-comment">[2,4]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[3,4]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[2,3]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[1,2]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[1,3]</span>,</span><br><span class="hljs-comment">    <span class="hljs-comment">[1,4]</span>,</span><br><span class="hljs-comment">]</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; combine(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k) &#123;<br>        List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">if</span> (k &lt;= <span class="hljs-number">0</span> || n &lt; k) &#123;<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;<br>        <span class="hljs-comment">// 为了防止底层动态数组扩容，初始化的时候传入最大长度</span><br>        Deque&lt;Integer&gt; path = <span class="hljs-keyword">new</span> ArrayDeque&lt;&gt;(k);<br>        dfs(<span class="hljs-number">1</span>, n, k, path, res);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> begin, <span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> k, Deque&lt;Integer&gt; path, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">0</span>) &#123;<br>            res.add(<span class="hljs-keyword">new</span> ArrayList&lt;&gt;(path));<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-comment">// 基础版本的递归终止条件：if (begin == n + 1) &#123;</span><br>        <span class="hljs-keyword">if</span> (begin &gt; n - k + <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-comment">// 不选当前考虑的数 begin，直接递归到下一层</span><br>        dfs(begin + <span class="hljs-number">1</span>, n, k, path, res);<br>        <span class="hljs-comment">// 不选当前考虑的数 begin，递归到下一层的时候 k - 1，这里 k 表示还需要选多少个数</span><br>        path.addLast(begin);<br>        dfs(begin + <span class="hljs-number">1</span>, n, k - <span class="hljs-number">1</span>, path, res);<br>        <span class="hljs-comment">// 深度优先遍历有回头的过程，因此需要撤销选择</span><br>        path.removeLast();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​全排列-中等"><a href="#​全排列-中等" class="headerlink" title="​全排列(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations/">全排列(中等)</a></h2><blockquote>
+<p>给定一个 没有重复 数字的序列，返回其所有可能的全排列。</p>
+</blockquote>
+<p>示例:<br>输入: [1,2,3]<br>输出:<br>[<br>[1,2,3],<br>[1,3,2],<br>[2,1,3],<br>[2,3,1],<br>[3,1,2],<br>[3,2,1]<br>]</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span></span>&#123;<br>    <span class="hljs-comment">//存储结果</span><br>    List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>    <span class="hljs-comment">//函数入口</span><br>    List&lt;List&lt;Integer&gt;&gt; permute(<span class="hljs-keyword">int</span>[] nums)&#123;<br>        <span class="hljs-comment">//记录走过的路径</span><br>        LinkedList&lt;Integer&gt; integers = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>        <span class="hljs-comment">//入口</span><br>        backtrack(nums,integers);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>    <span class="hljs-comment">//回溯函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, LinkedList&lt;Integer&gt; track)</span></span>&#123;<br>        <span class="hljs-comment">//如果走过的路径包含所有的选择则完成一轮</span><br>        <span class="hljs-keyword">if</span> (nums.length==track.size()) &#123;<br>            res.add(<span class="hljs-keyword">new</span> LinkedList(track));<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt;nums.length; i++) &#123;<br>            <span class="hljs-comment">//排除不合法的选择</span><br>            <span class="hljs-keyword">if</span> (track.contains(nums[i]))<span class="hljs-keyword">continue</span>;<br>            <span class="hljs-comment">//做选择</span><br>            track.add(nums[i]);<br>            <span class="hljs-comment">//进入下一层决策树</span><br>            backtrack(nums,track);<br>            <span class="hljs-comment">//撤销选择</span><br>            track.removeLast();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​全排列-II-中等"><a href="#​全排列-II-中等" class="headerlink" title="​全排列 II(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/permutations-ii/">全排列 II(中等)</a></h2><p>题目描述</p>
+<blockquote>
+<p>给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列</p>
+</blockquote>
+<p>示例 1：<br>输入：nums = [1,1,2]<br>输出：<br>[[1,1,2],<br>[1,2,1],<br>[2,1,1]]<br>示例 2：<br>输入：nums = [1,2,3]<br>输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; permuteUnique(<span class="hljs-keyword">int</span>[] nums) &#123;<br>        List&lt;List&lt;Integer&gt;&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-comment">//从小到大排序，跳过重复项</span><br>        Arrays.sort(nums);<br>        <span class="hljs-keyword">boolean</span>[] visited = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[nums.length];<br>        backtrack(res, <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(), nums, visited, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(List&lt;List&lt;Integer&gt;&gt; res, List&lt;Integer&gt; list, <span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">boolean</span>[] visited, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-comment">//终止条件, 说明找到一组组合</span><br>        <span class="hljs-keyword">if</span>(n == nums.length) &#123;<br>            res.add(<span class="hljs-keyword">new</span> ArrayList&lt;&gt;(list));<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span>(visited[i] == <span class="hljs-keyword">true</span>) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>] &amp;&amp; visited[i - <span class="hljs-number">1</span>] == <span class="hljs-keyword">false</span>) <span class="hljs-keyword">continue</span>;<br>            <span class="hljs-comment">//选择当前值</span><br>            visited[i] = <span class="hljs-keyword">true</span>;<br>            list.add(nums[i]);<br>            <span class="hljs-comment">//递归</span><br>            backtrack(res, list, nums, visited, n + <span class="hljs-number">1</span>);<br>            <span class="hljs-comment">//撤销选择</span><br>            list.remove(list.size() - <span class="hljs-number">1</span>);<br>            visited[i] = <span class="hljs-keyword">false</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​Pow-x-n-中等"><a href="#​Pow-x-n-中等" class="headerlink" title="​Pow(x, n)(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/powx-n/">Pow(x, n)(中等)</a></h2><blockquote>
+<p>递归和迭代拆分进行计算</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">long</span> N)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (N == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1.0</span>;<span class="hljs-comment">//0次幂</span><br>        <span class="hljs-keyword">double</span> y = quickMul(x, N / <span class="hljs-number">2</span>);<span class="hljs-comment">//折半计算</span><br>        <span class="hljs-keyword">return</span> N % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> ? y * y : y * y * x;<span class="hljs-comment">//减少计算</span><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> N = n;<br>        <span class="hljs-keyword">return</span> N &gt;= <span class="hljs-number">0</span> ? quickMul(x, N) : <span class="hljs-number">1.0</span> / quickMul(x, -N);<span class="hljs-comment">//处理负次方幂</span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">quickMul</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">long</span> N)</span> </span>&#123;<br>        <span class="hljs-keyword">double</span> ans = <span class="hljs-number">1.0</span>;<br>        <span class="hljs-comment">// 贡献的初始值为 x</span><br>        <span class="hljs-keyword">double</span> x_contribute = x;<br>        <span class="hljs-comment">// 在对 N 进行二进制拆分的同时计算答案</span><br>        <span class="hljs-keyword">while</span> (N &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">if</span> (N % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-comment">// 如果 N 二进制表示的最低位为 1，那么需要计入贡献</span><br>                ans *= x_contribute;<br>            &#125;<br>            <span class="hljs-comment">// 将贡献不断地平方</span><br>            x_contribute *= x_contribute;<br>            <span class="hljs-comment">// 舍弃 N 二进制表示的最低位，这样我们每次只要判断最低位即可</span><br>            N /= <span class="hljs-number">2</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">myPow</span><span class="hljs-params">(<span class="hljs-keyword">double</span> x, <span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">long</span> N = n;<br>        <span class="hljs-keyword">return</span> N &gt;= <span class="hljs-number">0</span> ? quickMul(x, N) : <span class="hljs-number">1.0</span> / quickMul(x, -N);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​多数元素-简单"><a href="#​多数元素-简单" class="headerlink" title="​多数元素(简单)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/majority-element/">多数元素(简单)</a></h2><p>给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数 大于 ⌊ n/2 ⌋ 的元素<br>    哈希表,排序,摩尔投票</p>
+<blockquote>
+<p>Boyer-Moore 投票算法</p>
+</blockquote>
+<p>思路<br>如果我们把众数记为 +1，把其他数记为 −1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。<br>算法<br>Boyer-Moore 算法的本质和方法四中的分治十分类似。我们首先给出 Boyer-Moore 算法的详细步骤：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs llvm">我们维护一个候选众数 candidate 和它出现的次数 count。初始时 candidate 可以为任意值，count 为 <span class="hljs-number">0</span>；<br>我们遍历数组 nums 中的所有元素，对于每个元素 <span class="hljs-keyword">x</span>，在判断 <span class="hljs-keyword">x</span> 之前，如果 count 的值为 <span class="hljs-number">0</span>，我们先将 <span class="hljs-keyword">x</span> 的值赋予 candidate，随后我们判断 <span class="hljs-keyword">x</span>：<br>如果 <span class="hljs-keyword">x</span> 与 candidate 相等，那么计数器 count 的值增加 <span class="hljs-number">1</span>；<br>如果 <span class="hljs-keyword">x</span> 与 candidate 不等，那么计数器 count 的值减少 <span class="hljs-number">1</span>。<br>在遍历完成后，candidate 即为整个数组的众数。<br></code></pre></div></td></tr></table></figure>
+
+<p>我们举一个具体的例子，例如下面的这个数组：<br>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]<br>在遍历到数组中的第一个元素以及每个在 | 之后的元素时，candidate 都会因为 count 的值变为 0 而发生改变。最后一次 candidate 的值从 5 变为 7，也就是这个数组中的众数。<br>Boyer-Moore 算法的正确性较难证明，这里给出一种较为详细的用例子辅助证明的思路，供读者参考：<br>首先我们根据算法步骤中对 count 的定义，可以发现：在对整个数组进行遍历的过程中，count 的值一定非负。这是因为如果 count 的值为 0，那么在这一轮遍历的开始时刻，我们会将 x 的值赋予 candidate 并在接下来的一步中将 count 的值增加 1。因此 count 的值在遍历的过程中一直保持非负。<br>那么 count 本身除了计数器之外，还有什么更深层次的意义呢？我们还是以数组<br>[7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]<br>作为例子，首先写下它在每一步遍历时 candidate 和 count 的值：<br>nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]<br>candidate:  7  7  7  7  7  7   5  5   5  5  5  5   7  7  7  7<br>count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4<br>我们再定义一个变量 value，它和真正的众数 maj 绑定。在每一步遍历时，如果当前的数 x 和 maj 相等，那么 value 的值加 1，否则减 1。value 的实际意义即为：到当前的这一步遍历为止，众数出现的次数比非众数多出了多少次。我们将 value 的值也写在下方：<br>nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]<br>value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4<br>有没有发现什么？我们将 count 和 value 放在一起：<br>nums:      [7, 7, 5, 7, 5, 1 | 5, 7 | 5, 5, 7, 7 | 7, 7, 7, 7]<br>count:      1  2  1  2  1  0   1  0   1  2  1  0   1  2  3  4<br>value:      1  2  1  2  1  0  -1  0  -1 -2 -1  0   1  2  3  4<br>发现在每一步遍历中，count 和 value 要么相等，要么互为相反数！并且在候选众数 candidate 就是 maj 时，它们相等，candidate 是其它的数时，它们互为相反数！<br>为什么会有这么奇妙的性质呢？这并不难证明：我们将候选众数 candidate 保持不变的连续的遍历称为「一段」。在同一段中，count 的值是根据 candidate == x 的判断进行加减的。那么如果 candidate 恰好为 maj，那么在这一段中，count 和 value 的变化是同步的；如果 candidate 不为 maj，那么在这一段中 count 和 value 的变化是相反的。因此就有了这样一个奇妙的性质。<br>这样以来，由于：<br>我们证明了 count 的值一直为非负，在最后一步遍历结束后也是如此；<br>由于 value 的值与真正的众数 maj 绑定，并且它表示「众数出现的次数比非众数多出了多少次」，那么在最后一步遍历结束后，value 的值为正数；<br>在最后一步遍历结束后，count 非负，value 为正数，所以它们不可能互为相反数，只可能相等，即 count == value。因此在最后「一段」中，count 的 value 的变化是同步的，也就是说，candidate 中存储的候选众数就是真正的众数 maj。</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">majorityElement</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;<br>        Integer candidate = <span class="hljs-keyword">null</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> num : nums) &#123;<br>            <span class="hljs-keyword">if</span> (count == <span class="hljs-number">0</span>) &#123;<br>                candidate = num;<br>            &#125;<br>            count += (num == candidate) ? <span class="hljs-number">1</span> : -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> candidate;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​电话号码的字母组合-中等"><a href="#​电话号码的字母组合-中等" class="headerlink" title="​电话号码的字母组合(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/">电话号码的字母组合(中等)</a></h2><blockquote>
+<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 方法入口</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> digits</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;String&gt; <span class="hljs-title">letterCombinations</span><span class="hljs-params">(String digits)</span> </span>&#123;<br>        List&lt;String&gt; combinations = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();<br>        <span class="hljs-keyword">if</span> (digits.length() == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> combinations;<br>        &#125;<br>        Map&lt;Character, String&gt; phoneMap = <span class="hljs-keyword">new</span> HashMap&lt;Character, String&gt;() &#123;&#123;<br>            put(<span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-string">&quot;abc&quot;</span>);<br>            put(<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&quot;def&quot;</span>);<br>            put(<span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-string">&quot;ghi&quot;</span>);<br>            put(<span class="hljs-string">&#x27;5&#x27;</span>, <span class="hljs-string">&quot;jkl&quot;</span>);<br>            put(<span class="hljs-string">&#x27;6&#x27;</span>, <span class="hljs-string">&quot;mno&quot;</span>);<br>            put(<span class="hljs-string">&#x27;7&#x27;</span>, <span class="hljs-string">&quot;pqrs&quot;</span>);<br>            put(<span class="hljs-string">&#x27;8&#x27;</span>, <span class="hljs-string">&quot;tuv&quot;</span>);<br>            put(<span class="hljs-string">&#x27;9&#x27;</span>, <span class="hljs-string">&quot;wxyz&quot;</span>);<br>        &#125;&#125;;<br>        backtrack(combinations, phoneMap, digits, <span class="hljs-number">0</span>, <span class="hljs-keyword">new</span> StringBuffer());<br>        <span class="hljs-keyword">return</span> combinations;<br>    &#125;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 回溯</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> combinations</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> phoneMap</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> digits</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> combination</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(List&lt;String&gt; combinations, Map&lt;Character, String&gt; phoneMap, String digits, <span class="hljs-keyword">int</span> index, StringBuffer combination)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (index == digits.length()) &#123;<span class="hljs-comment">//结束条件</span><br>            combinations.add(combination.toString());<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">char</span> digit = digits.charAt(index);<span class="hljs-comment">//获取当前数字</span><br>            String letters = phoneMap.get(digit);<span class="hljs-comment">//获取当前数字对应的字符串</span><br>            <span class="hljs-keyword">int</span> lettersCount = letters.length();<span class="hljs-comment">//字符串长度</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; lettersCount; i++) &#123;<span class="hljs-comment">//遍历字符串</span><br>                combination.append(letters.charAt(i));<span class="hljs-comment">//追加字符到字符串末尾</span><br>                backtrack(combinations, phoneMap, digits, index + <span class="hljs-number">1</span>, combination);<br>                combination.deleteCharAt(index);<span class="hljs-comment">//移除追加的字符串</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​N-皇后-困难"><a href="#​N-皇后-困难" class="headerlink" title="​N 皇后(困难)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-queens/">N 皇后(困难)</a></h2><blockquote>
+<p>n  皇后问题 研究的是如何将 n  个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。<br>给你一个整数 n ，返回所有不同的  n  皇后问题 的解决方案。<br>每一种解法包含一个不同的  n 皇后问题 的棋子放置方案，该方案中 ‘Q’ 和 ‘.’ 分别代表了皇后和空位。</p>
+</blockquote>
+<p><code>后彼此不能相互攻击，也就是说：任何两个皇后都不能处于同一条横行、纵行或斜线上。</code></p>
+<blockquote>
+<p>结题思路、回溯</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span></span>&#123;<br>        <span class="hljs-comment">//存放结果</span><br>        List&lt;List&lt;String&gt;&gt; res = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">public</span>  List&lt;List&lt;String&gt;&gt; solveNQueens(<span class="hljs-keyword">int</span> n) &#123;<br><br>            <span class="hljs-comment">//用二维char数组初始化棋盘</span><br>            <span class="hljs-keyword">char</span>[][] board = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[n][n];<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>                Arrays.fill(board[i],<span class="hljs-string">&#x27;.&#x27;</span>);<br>            &#125;<br>            backtrack(<span class="hljs-number">0</span>,board);<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">backtrack</span><span class="hljs-params">(<span class="hljs-keyword">int</span> row,<span class="hljs-keyword">char</span>[][] board)</span></span>&#123;<br>            <span class="hljs-keyword">if</span>(board.length == row)&#123;<br>                res.add(charArraysToList(board));<br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br>            <span class="hljs-keyword">int</span> n = board[row].length - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> col = <span class="hljs-number">0</span>; col &lt;= n; col++)&#123;<br>             <span class="hljs-comment">//排除不合法的选项</span><br>             <span class="hljs-keyword">if</span> (!isValid(board,row,col))<br>                 <span class="hljs-keyword">continue</span>;<br>             <span class="hljs-comment">//做选择</span><br>                board[row][col]=<span class="hljs-string">&#x27;Q&#x27;</span>;<br>             <span class="hljs-comment">//进入下一行决策</span><br>                backtrack(row+<span class="hljs-number">1</span>,board);<br>             <span class="hljs-comment">//撤销选择</span><br>                board[row][col]=<span class="hljs-string">&#x27;.&#x27;</span>;<br>            &#125;<br><br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[][] board,<span class="hljs-keyword">int</span> row , <span class="hljs-keyword">int</span> col)</span></span>&#123;<br>            <span class="hljs-keyword">int</span> n = board.length;<br>            <span class="hljs-comment">//注意由于我们是从上往下的来一个一个排列 所以不用检查下方的棋盘</span><br>            <span class="hljs-comment">//检查正上方有没有冲突(列冲突)</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>; r&lt; n;r++)&#123;<br>               <span class="hljs-keyword">if</span> ( board[r][col] ==<span class="hljs-string">&#x27;Q&#x27;</span>)<br>                   <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>            <span class="hljs-comment">//检查左上方</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = row-<span class="hljs-number">1</span>,j=col-<span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>&amp;&amp;j&gt;=<span class="hljs-number">0</span>;i--,j--)&#123;<br>                <span class="hljs-keyword">if</span> (board[i][j]==<span class="hljs-string">&#x27;Q&#x27;</span>)<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>            <span class="hljs-comment">//检查右上方</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = row-<span class="hljs-number">1</span>,j=col+<span class="hljs-number">1</span>; i&gt;=<span class="hljs-number">0</span>&amp;&amp;j&lt;board[i].length;i--,j++)&#123;<br>                <span class="hljs-keyword">if</span> (board[i][j]==<span class="hljs-string">&#x27;Q&#x27;</span>)<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;String&gt; <span class="hljs-title">charArraysToList</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[][] board)</span></span>&#123;<br>            <span class="hljs-comment">//将char数组变成list&lt;String&gt;</span><br>            List&lt;String&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span>[] c : board)&#123;<br>                String str = <span class="hljs-keyword">new</span> String(c);<br>                list.add(str);<br>            &#125;<br>            <span class="hljs-keyword">return</span> list;<br>        &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​最小基因变化-中等"><a href="#​最小基因变化-中等" class="headerlink" title="​最小基因变化(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-genetic-mutation/">最小基因变化(中等)</a></h2><blockquote>
+<p>回溯思想、广度优先遍历</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minMutation</span><span class="hljs-params">(String start, String end, String[] bank)</span> </span>&#123;<br>        HashSet&lt;String&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;&gt;(Arrays.asList(bank));<br>        <span class="hljs-comment">//不包含结果直接返回-1</span><br>        <span class="hljs-keyword">if</span> (!set.contains(end)) &#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment">//</span><br>        <span class="hljs-keyword">char</span>[] four = &#123;<span class="hljs-string">&#x27;A&#x27;</span>, <span class="hljs-string">&#x27;C&#x27;</span>, <span class="hljs-string">&#x27;G&#x27;</span>, <span class="hljs-string">&#x27;T&#x27;</span>&#125;;<br>        Queue&lt;String&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>        queue.offer(start);<span class="hljs-comment">//</span><br>        set.remove(start);<span class="hljs-comment">//集合中移除</span><br>        <span class="hljs-keyword">int</span> step = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (queue.size() &gt; <span class="hljs-number">0</span>) &#123;<br>            step++;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> count = queue.size(); count &gt; <span class="hljs-number">0</span>; --count) &#123;<br>                <span class="hljs-keyword">char</span>[] temStringChars = queue.poll().toCharArray();<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, len = temStringChars.length; i &lt; len; ++i) &#123;<br>                    <span class="hljs-keyword">char</span> oldChar = temStringChars[i];<br>                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">4</span>; ++j) &#123;<br>                        temStringChars[i] = four[j];<br>                        String newGenetic = <span class="hljs-keyword">new</span> String(temStringChars);<br>                        <span class="hljs-keyword">if</span> (end.equals(newGenetic)) &#123;<br>                            <span class="hljs-keyword">return</span> step;<br>                        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (set.contains(newGenetic)) &#123;<br>                            set.remove(newGenetic);<br>                            queue.offer(newGenetic);<br>                        &#125;<br>                    &#125;<br>                    temStringChars[i] = oldChar;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>回溯思想、深度优先遍历</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> minStepCount = Integer.MAX_VALUE;<span class="hljs-comment">//设置默认值</span><br>    <span class="hljs-comment">//函数入口</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minMutation</span><span class="hljs-params">(String start, String end, String[] bank)</span> </span>&#123;<br>        dfs(<span class="hljs-keyword">new</span> HashSet&lt;String&gt;(), <span class="hljs-number">0</span>, start, end, bank);<br>        <span class="hljs-keyword">return</span> (minStepCount == Integer.MAX_VALUE) ? -<span class="hljs-number">1</span> : minStepCount;<br>    &#125;<br>    <span class="hljs-comment">//深度优先遍历</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span> <span class="hljs-params">(HashSet&lt;String&gt; step, <span class="hljs-keyword">int</span> stepCount,String current, String end, String[] bank)</span> </span>&#123;<br>        <span class="hljs-comment">//满足条件进行比较赋值</span><br>        <span class="hljs-keyword">if</span> (current.equals(end))  minStepCount = Math.min(stepCount, minStepCount);<br>        <span class="hljs-comment">//遍历基因库</span><br>        <span class="hljs-keyword">for</span> (String str: bank) &#123;<br>            <span class="hljs-comment">//遍历</span><br>            <span class="hljs-keyword">int</span> diff = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; str.length(); i++)<br>                <span class="hljs-keyword">if</span> (current.charAt(i) != str.charAt(i)) <span class="hljs-keyword">if</span> (++diff &gt; <span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;<span class="hljs-comment">//记录基因不同的位置</span><br>            <span class="hljs-comment">//当前有基因不同 &amp;&amp; 基因库中不包含当前基因序列(已使用过处理)</span><br>            <span class="hljs-keyword">if</span> (diff == <span class="hljs-number">1</span> &amp;&amp; !step.contains(str)) &#123;<br>                step.add(str);<span class="hljs-comment">//添加当前序列</span><br>                dfs(step, stepCount + <span class="hljs-number">1</span>, str, end, bank);<span class="hljs-comment">//进入下一层遍历,步数+1,并且使用当前序列作为current</span><br>                step.remove(str);<span class="hljs-comment">//移除当前序列</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="在每个树行中找最大值-中等"><a href="#在每个树行中找最大值-中等" class="headerlink" title="在每个树行中找最大值(中等)"></a>在每个树行中找最大值(中等)</h2><blockquote>
+<p>广度优先</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">largestValues</span><span class="hljs-params">(TreeNode root)</span> </span>&#123;<br>        List&lt;Integer&gt; ans = <span class="hljs-keyword">new</span> ArrayList&lt;Integer&gt;();<br>        LinkedList&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();<br>        <span class="hljs-keyword">if</span>(!Objects.isNull(root))queue.add(root);<br><br>        <span class="hljs-keyword">while</span>(!queue.isEmpty())&#123;<br>            <span class="hljs-keyword">int</span> size = queue.size();<br>            <span class="hljs-keyword">int</span> max = queue.getFirst().val;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;size;i++)&#123;<br>                TreeNode node = queue.poll();<br>                <span class="hljs-keyword">if</span>(node.val&gt;max)max=node.val;<br>                <span class="hljs-keyword">if</span>(node.left!=<span class="hljs-keyword">null</span>)queue.add(node.left);<br>                <span class="hljs-keyword">if</span>(node.right!=<span class="hljs-keyword">null</span>)queue.add(node.right);<br>            &#125;<br>            ans.add(max);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="累加数"><a href="#累加数" class="headerlink" title="累加数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/additive-number/">累加数</a></h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isAdditiveNumber</span><span class="hljs-params">(String num)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = num.length();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> secondStart = <span class="hljs-number">1</span>; secondStart &lt; n - <span class="hljs-number">1</span>; ++secondStart) &#123;<br>            <span class="hljs-keyword">if</span> (num.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; secondStart != <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> secondEnd = secondStart; secondEnd &lt; n - <span class="hljs-number">1</span>; ++secondEnd) &#123;<br>                <span class="hljs-keyword">if</span> (num.charAt(secondStart) == <span class="hljs-string">&#x27;0&#x27;</span> &amp;&amp; secondStart != secondEnd) &#123;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (valid(secondStart, secondEnd, num)) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">valid</span><span class="hljs-params">(<span class="hljs-keyword">int</span> secondStart, <span class="hljs-keyword">int</span> secondEnd, String num)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = num.length();<br>        <span class="hljs-keyword">int</span> firstStart = <span class="hljs-number">0</span>, firstEnd = secondStart - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (secondEnd &lt;= n - <span class="hljs-number">1</span>) &#123;<br>            String third = stringAdd(num, firstStart, firstEnd, secondStart, secondEnd);<br>            <span class="hljs-keyword">int</span> thirdStart = secondEnd + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">int</span> thirdEnd = secondEnd + third.length();<br>            <span class="hljs-keyword">if</span> (thirdEnd &gt;= n || !num.substring(thirdStart, thirdEnd + <span class="hljs-number">1</span>).equals(third)) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (thirdEnd == n - <span class="hljs-number">1</span>) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125;<br>            firstStart = secondStart;<br>            firstEnd = secondEnd;<br>            secondStart = thirdStart;<br>            secondEnd = thirdEnd;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">stringAdd</span><span class="hljs-params">(String s, <span class="hljs-keyword">int</span> firstStart, <span class="hljs-keyword">int</span> firstEnd, <span class="hljs-keyword">int</span> secondStart, <span class="hljs-keyword">int</span> secondEnd)</span> </span>&#123;<br>        StringBuffer third = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>, cur = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (firstEnd &gt;= firstStart || secondEnd &gt;= secondStart || carry != <span class="hljs-number">0</span>) &#123;<br>            cur = carry;<br>            <span class="hljs-keyword">if</span> (firstEnd &gt;= firstStart) &#123;<br>                cur += s.charAt(firstEnd) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>                --firstEnd;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (secondEnd &gt;= secondStart) &#123;<br>                cur += s.charAt(secondEnd) - <span class="hljs-string">&#x27;0&#x27;</span>;<br>                --secondEnd;<br>            &#125;<br>            carry = cur / <span class="hljs-number">10</span>;<br>            cur %= <span class="hljs-number">10</span>;<br>            third.append((<span class="hljs-keyword">char</span>) (cur + <span class="hljs-string">&#x27;0&#x27;</span>));<br>        &#125;<br>        third.reverse();<br>        <span class="hljs-keyword">return</span> third.toString();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/">算法相关</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/19/yuque/yukctt/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">刷题笔记-贪心类型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/19/yuque/lrl509/">
+                        <span class="hidden-mobile">刷题记录-排序算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'mikeygithub/commit-utterance');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     Copyright © 2017-2021 麦奇 Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> And <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> Core on Github Page 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        桂ICP备2020009931号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020009931"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>桂公网安备2020009931号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?74301a15e5497361e93588eeee69f4b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

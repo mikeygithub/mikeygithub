@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Mikey">
+  <meta name="keywords" content="">
+  
+  <title>源码篇-Spring源码分析 - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mikeygithub.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"74301a15e5497361e93588eeee69f4b2","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="麦奇" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-image"></i>
+                照片
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/todo/">
+                <i class="iconfont icon-plan"></i>
+                代办
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-briefcase"></i>
+                其他
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://www.yuque.com/aichihongdouheyumi/blog">
+                    
+                    在线创作
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于麦奇
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://bing.ioliu.cn/v1/rand') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="源码篇-Spring源码分析">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Mikey
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-28 00:39" pubdate>
+        2021年2月28日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">源码篇-Spring源码分析</h1>
+            
+            <div class="markdown-body">
+              <h1 id="启动流程"><a href="#启动流程" class="headerlink" title="启动流程"></a>启动流程</h1><figure class="highlight stylus"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs stylus">spring<br>├── aopalliance-<span class="hljs-number">1.0</span><span class="hljs-selector-class">.jar</span><br>├── commons-logging-<span class="hljs-number">1.2</span><span class="hljs-selector-class">.jar</span><br>├── spring-aop-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-aspects-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-beans-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-context-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-context-support-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-core-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-expression-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-instrument-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-jdbc-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-jms-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-messaging-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-orm-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-oxm-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>├── spring-test-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span><span class="hljs-selector-class">.jar</span><br>└── spring-tx-<span class="hljs-number">5.2</span>.<span class="hljs-number">3</span><span class="hljs-selector-class">.RELEASE</span>.jar<br></code></pre></div></td></tr></table></figure>
+
+<p>先贴代码</p>
+<figure class="highlight xml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">       <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">beans</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;messageService&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.analyxe.service.impl.MessageServiceImpl&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MessageService</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMessage</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MessageServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageService</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getMessage</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;get message ......&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;MESSAGE&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br><br>        ClassPathXmlApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(<span class="hljs-string">&quot;classpath:applicationContext.xml&quot;</span>);<br><br>        MessageService messageService = (MessageService) context.getBean(<span class="hljs-string">&quot;messageService&quot;</span>);<br><br>        String message = messageService.getMessage();<br><br>        System.out.println(message);<br><br>    &#125;<br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<pre><code class=" mermaid">graph BT;
+A(FileSystemXmlApplicationContext)--&gt;C
+B(FileSystemXmlApplicationContext)--&gt;C(AbstractXmlApplicationContext)
+C--&gt;D(AbstractRefreshableConfigApplicationContext)
+E(AnnotationConfigApplicationContext)--&gt;F(GenericApplicationCcntext)
+D--&gt;G(AbstractRefreshableApplicationContext)
+G--&gt;H
+F--&gt;H(AbstractApplicationContext)
+H--&gt;I(ConfigurableApplicationContext接口)
+I--&gt;J(ApplicationContext接口)
+
+style J fill: green, stroke: #333, stroke-width: 4px;
+style I fill: green, stroke: #333, stroke-width: 4px;
+</code></pre>
+
+<p>下面我们一步一步来代码跟踪</p>
+<p>1.首先调用其构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ClassPathXmlApplicationContext</span><span class="hljs-params">(String configLocation)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;<br>    <span class="hljs-keyword">this</span>(<span class="hljs-keyword">new</span> String[]&#123;configLocation&#125;, <span class="hljs-keyword">true</span>, (ApplicationContext)<span class="hljs-keyword">null</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>2.具体构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ClassPathXmlApplicationContext</span><span class="hljs-params">(String[] configLocations, <span class="hljs-keyword">boolean</span> refresh, <span class="hljs-meta">@Nullable</span> ApplicationContext parent)</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;<br>    <span class="hljs-keyword">super</span>(parent);<span class="hljs-comment">//调用父类AbstractXmlApplicationContext(看上图)构造方法</span><br>    <span class="hljs-keyword">this</span>.setConfigLocations(configLocations);<span class="hljs-comment">//设置配置文件位置</span><br>    <span class="hljs-keyword">if</span> (refresh) &#123;<span class="hljs-comment">//是否刷新容器，默认传进来为true</span><br>        <span class="hljs-keyword">this</span>.refresh();<span class="hljs-comment">//刷新容器(这个很重要下面会详细讲)</span><br>    &#125;<br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>3.再看看其调用ClassPathXmlApplicationContext父类构造方法具体是什么</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AbstractXmlApplicationContext</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> ApplicationContext parent)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(parent);<span class="hljs-comment">//调用父类AbstractRefreshableConfigApplicationContext(看上图)构造方法</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>4.再看看其调用AbstractXmlApplicationContext父类构造方法具体是什么，它又调用父类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AbstractRefreshableApplicationContext</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> ApplicationContext parent)</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>(parent);<span class="hljs-comment">//调用父类AbstractApplicationContext(看上图)构造方法</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>5.我们瞧瞧这个AbstractApplicationContext的构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AbstractApplicationContext</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> ApplicationContext parent)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>();<span class="hljs-comment">//构造方法</span><br>    <span class="hljs-keyword">this</span>.setParent(parent);<span class="hljs-comment">//设置ApplicationContext(顶层接口)</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>6.构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AbstractApplicationContext</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">//1.获取类加载器加载日志配置</span><br>    <span class="hljs-keyword">this</span>.logger = LogFactory.getLog(<span class="hljs-keyword">this</span>.getClass());<br>    <span class="hljs-comment">//当前身份实例id&amp;显示名字 org.springframework.context.support.ClassPathXmlApplicationContext@3498ed</span><br>    <span class="hljs-keyword">this</span>.id = ObjectUtils.identityToString(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-keyword">this</span>.displayName = ObjectUtils.identityToString(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-comment">//BeanFactory后处理器</span><br>    <span class="hljs-keyword">this</span>.beanFactoryPostProcessors = <span class="hljs-keyword">new</span> ArrayList();<br>    <span class="hljs-comment">//是否已经激活和关闭</span><br>    <span class="hljs-keyword">this</span>.active = <span class="hljs-keyword">new</span> AtomicBoolean();<br>    <span class="hljs-keyword">this</span>.closed = <span class="hljs-keyword">new</span> AtomicBoolean();<br>    <span class="hljs-comment">//开启/关闭监视器</span><br>    <span class="hljs-keyword">this</span>.startupShutdownMonitor = <span class="hljs-keyword">new</span> Object();<br>    <span class="hljs-comment">//监听器</span><br>    <span class="hljs-keyword">this</span>.applicationListeners = <span class="hljs-keyword">new</span> LinkedHashSet();<br>    <span class="hljs-comment">//资源匹配器</span><br>    <span class="hljs-keyword">this</span>.resourcePatternResolver = <span class="hljs-keyword">this</span>.getResourcePatternResolver();<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>7.设置ApplicationContext(顶层接口)</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setParent</span><span class="hljs-params">(<span class="hljs-meta">@Nullable</span> ApplicationContext parent)</span> </span>&#123;<br>    <span class="hljs-keyword">this</span>.parent = parent;<span class="hljs-comment">//设置ApplicationContext</span><br>    <span class="hljs-keyword">if</span> (parent != <span class="hljs-keyword">null</span>) &#123;<span class="hljs-comment">//如果ApplicationContext为空则</span><br>        Environment parentEnvironment = parent.getEnvironment();<br>        <span class="hljs-keyword">if</span> (parentEnvironment <span class="hljs-keyword">instanceof</span> ConfigurableEnvironment) &#123;<br>            <span class="hljs-keyword">this</span>.getEnvironment().merge((ConfigurableEnvironment)parentEnvironment);<br>        &#125;<br>    &#125;<br><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>执行完成回到2，设置配置文件位置和刷新容器</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">refresh</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException, IllegalStateException </span>&#123;<br>	<span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>.startupShutdownMonitor) &#123;<br>		<span class="hljs-comment">// 准备刷新容器</span><br>		prepareRefresh();<br>		<span class="hljs-comment">// 告诉子类刷新内部beanFactory</span><br>		ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();<br>		<span class="hljs-comment">// 准备beanFactory以便在容器中使用。</span><br>		prepareBeanFactory(beanFactory);<br>		<span class="hljs-keyword">try</span> &#123;<br>			<span class="hljs-comment">// Allows post-processing of the bean factory in context subclasses.</span><br>			postProcessBeanFactory(beanFactory);<br>			<span class="hljs-comment">// Invoke factory processors registered as beans in the context.</span><br>			invokeBeanFactoryPostProcessors(beanFactory);<br>			<span class="hljs-comment">// Register bean processors that intercept bean creation.</span><br>			registerBeanPostProcessors(beanFactory);<br>			<span class="hljs-comment">// Initialize message source for this context.</span><br>			initMessageSource();<br>			<span class="hljs-comment">// Initialize event multicaster for this context.</span><br>			initApplicationEventMulticaster();<br>			<span class="hljs-comment">// 初始化特定容器子类中的其他特殊bean.</span><br>			onRefresh();<br>			<span class="hljs-comment">// 检查监听器并注册</span><br>			registerListeners();<br>			<span class="hljs-comment">// 实例化所有的 singletons bean (除了lazy-init外).</span><br>			finishBeanFactoryInitialization(beanFactory);<br>			<span class="hljs-comment">// 最后容器构造完成发布其事件</span><br>			finishRefresh();<br>		&#125;<span class="hljs-keyword">catch</span> (BeansException ex) &#123;<br>			<span class="hljs-keyword">if</span> (logger.isWarnEnabled()) &#123;<br>				logger.warn(<span class="hljs-string">&quot;Exception encountered during context initialization - &quot;</span> +<br>						<span class="hljs-string">&quot;cancelling refresh attempt: &quot;</span> + ex);<br>			&#125;<br>			<span class="hljs-comment">// Destroy already created singletons to avoid dangling resources.</span><br>			destroyBeans();<br>			<span class="hljs-comment">// Reset &#x27;active&#x27; flag.</span><br>			cancelRefresh(ex);<br>			<span class="hljs-comment">// Propagate exception to caller.</span><br>			<span class="hljs-keyword">throw</span> ex;<br>		&#125;<br>		<span class="hljs-keyword">finally</span> &#123;<br>			<span class="hljs-comment">// Reset common introspection caches in Spring&#x27;s core, since we</span><br>			<span class="hljs-comment">// might not ever need metadata for singleton beans anymore...</span><br>			resetCommonCaches();<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>看看准备刷新前做了什么工作</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">prepareRefresh</span><span class="hljs-params">()</span> </span>&#123;<br>   <span class="hljs-comment">// Switch to active.</span><br>   <span class="hljs-keyword">this</span>.startupDate = System.currentTimeMillis();<br>   <span class="hljs-keyword">this</span>.closed.set(<span class="hljs-keyword">false</span>);<br>   <span class="hljs-keyword">this</span>.active.set(<span class="hljs-keyword">true</span>);<br>   <span class="hljs-keyword">if</span> (logger.isDebugEnabled()) &#123;<br>      <span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;<br>         logger.trace(<span class="hljs-string">&quot;Refreshing &quot;</span> + <span class="hljs-keyword">this</span>);<br>      &#125;<br>      <span class="hljs-keyword">else</span> &#123;<br>         logger.debug(<span class="hljs-string">&quot;Refreshing &quot;</span> + getDisplayName());<br>      &#125;<br>   &#125;<br>   <span class="hljs-comment">// Initialize any placeholder property sources in the context environment.</span><br>   initPropertySources();<br>   <span class="hljs-comment">// Validate that all properties marked as required are resolvable:</span><br>   <span class="hljs-comment">// see ConfigurablePropertyResolver#setRequiredProperties</span><br>   getEnvironment().validateRequiredProperties();<br>   <span class="hljs-comment">// Store pre-refresh ApplicationListeners...</span><br>   <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.earlyApplicationListeners == <span class="hljs-keyword">null</span>) &#123;<br>      <span class="hljs-keyword">this</span>.earlyApplicationListeners = <span class="hljs-keyword">new</span> LinkedHashSet&lt;&gt;(<span class="hljs-keyword">this</span>.applicationListeners);<br>   &#125;<br>   <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// Reset local application listeners to pre-refresh state.</span><br>      <span class="hljs-keyword">this</span>.applicationListeners.clear();<br>      <span class="hljs-keyword">this</span>.applicationListeners.addAll(<span class="hljs-keyword">this</span>.earlyApplicationListeners);<br>   &#125;<br>   <span class="hljs-comment">// Allow for the collection of early ApplicationEvents,</span><br>   <span class="hljs-comment">// to be published once the multicaster is available...</span><br>   <span class="hljs-keyword">this</span>.earlyApplicationEvents = <span class="hljs-keyword">new</span> LinkedHashSet&lt;&gt;();<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>实例化所有的 singletons bean (除了lazy-init外)</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">preInstantiateSingletons</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> BeansException </span>&#123;<br>   <span class="hljs-keyword">if</span> (logger.isTraceEnabled()) &#123;<br>      logger.trace(<span class="hljs-string">&quot;Pre-instantiating singletons in &quot;</span> + <span class="hljs-keyword">this</span>);<br>   &#125;<br>   <span class="hljs-comment">//迭代副本以允许init方法注册新的bean定义。</span><br>   <span class="hljs-comment">//虽然这可能不是常规工厂引导的一部分，但它在其他方面工作正常。</span><br>   List&lt;String&gt; beanNames = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(<span class="hljs-keyword">this</span>.beanDefinitionNames);<br><br>   <span class="hljs-comment">// 触发所有非懒加载单例bean的初始化。。。</span><br>   <span class="hljs-keyword">for</span> (String beanName : beanNames) &#123;<br>      RootBeanDefinition bd = getMergedLocalBeanDefinition(beanName);<br>      <span class="hljs-keyword">if</span> (!bd.isAbstract() &amp;&amp; bd.isSingleton() &amp;&amp; !bd.isLazyInit()) &#123;<span class="hljs-comment">//非抽象且单例且非懒加载</span><br>         <span class="hljs-keyword">if</span> (isFactoryBean(beanName)) &#123;<br>            Object bean = getBean(FACTORY_BEAN_PREFIX + beanName);<br>            <span class="hljs-keyword">if</span> (bean <span class="hljs-keyword">instanceof</span> FactoryBean) &#123;<br>               <span class="hljs-keyword">final</span> FactoryBean&lt;?&gt; factory = (FactoryBean&lt;?&gt;) bean;<br>               <span class="hljs-keyword">boolean</span> isEagerInit;<br>               <span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-keyword">null</span> &amp;&amp; factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean) &#123;<br>                  isEagerInit = AccessController.doPrivileged((PrivilegedAction&lt;Boolean&gt;)<br>                              ((SmartFactoryBean&lt;?&gt;) factory)::isEagerInit,<br>                        getAccessControlContext());<br>               &#125;<br>               <span class="hljs-keyword">else</span> &#123;<br>                  isEagerInit = (factory <span class="hljs-keyword">instanceof</span> SmartFactoryBean &amp;&amp;<br>                        ((SmartFactoryBean&lt;?&gt;) factory).isEagerInit());<br>               &#125;<br>               <span class="hljs-keyword">if</span> (isEagerInit) &#123;<br>                  getBean(beanName);<br>               &#125;<br>            &#125;<br>         &#125;<br>         <span class="hljs-keyword">else</span> &#123;<br>            getBean(beanName);<br>         &#125;<br>      &#125;<br>   &#125;<br><br>   <span class="hljs-comment">// Trigger post-initialization callback for all applicable beans...</span><br>   <span class="hljs-keyword">for</span> (String beanName : beanNames) &#123;<br>      Object singletonInstance = getSingleton(beanName);<br>      <span class="hljs-keyword">if</span> (singletonInstance <span class="hljs-keyword">instanceof</span> SmartInitializingSingleton) &#123;<br>         <span class="hljs-keyword">final</span> SmartInitializingSingleton smartSingleton = (SmartInitializingSingleton) singletonInstance;<br>         <span class="hljs-keyword">if</span> (System.getSecurityManager() != <span class="hljs-keyword">null</span>) &#123;<br>            AccessController.doPrivileged((PrivilegedAction&lt;Object&gt;) () -&gt; &#123;<br>               smartSingleton.afterSingletonsInstantiated();<br>               <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>            &#125;, getAccessControlContext());<br>         &#125;<br>         <span class="hljs-keyword">else</span> &#123;<br>            smartSingleton.afterSingletonsInstantiated();<br>         &#125;<br>      &#125;<br>   &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="缓存分析"><a href="#缓存分析" class="headerlink" title="缓存分析"></a>缓存分析</h1><p>TODO</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a target="_blank" rel="noopener" href="https://javadoop.com/post/spring-ioc">Spring核心IOC的源码分析</a>   </p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">源码分析</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Spring/">Spring</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/02/java/%E6%BA%90%E7%A0%81%E7%AF%87-Netty%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">源码篇-Netty源码分析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/27/java/%E6%BA%90%E7%A0%81%E7%AF%87-MyBatis%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+                        <span class="hidden-mobile">源码篇-MyBatis源码分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'mikeygithub/commit-utterance');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     Copyright © 2017-2021 麦奇 Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> And <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> Core on Github Page 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        桂ICP备2020009931号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020009931"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>桂公网安备2020009931号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?74301a15e5497361e93588eeee69f4b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

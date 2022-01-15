@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Mikey">
+  <meta name="keywords" content="">
+  
+  <title>刷题笔记-二分搜索 - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mikeygithub.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"74301a15e5497361e93588eeee69f4b2","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="麦奇" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-image"></i>
+                照片
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/todo/">
+                <i class="iconfont icon-plan"></i>
+                代办
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-briefcase"></i>
+                其他
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://www.yuque.com/aichihongdouheyumi/blog">
+                    
+                    在线创作
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于麦奇
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://bing.ioliu.cn/v1/rand') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="刷题笔记-二分搜索">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Mikey
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-19 17:24" pubdate>
+        2020年11月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      45
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">刷题笔记-二分搜索</h1>
+            
+            <div class="markdown-body">
+              <p><img src="https://cdn.nlark.com/yuque/0/2022/png/2630542/1641452386614-63480a06-4ecc-4188-948c-57e7af1b0354.png#clientId=u5584867f-2163-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=150&id=u5bf13e36&margin=%5Bobject%20Object%5D&name=image.png&originHeight=300&originWidth=600&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&size=66932&status=done&style=none&taskId=u1eb4ee8a-32d3-4954-aa43-2621309d44f&title=&width=300" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><h1 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h1><h2 id="​x-的平方根-简单"><a href="#​x-的平方根-简单" class="headerlink" title="​x 的平方根(简单)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sqrtx/">x 的平方根(简单)</a></h2><blockquote>
+<p>二分查找</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = x, ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (l &lt;= r) &#123;<br>            <span class="hljs-keyword">int</span> mid = l + (r - l) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">long</span>) mid * mid &lt;= x) &#123;<br>                ans = mid;<br>                l = mid + <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                r = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>牛顿迭代法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">double</span> C = x, x0 = x;<br>        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">true</span>) &#123;<br>            <span class="hljs-keyword">double</span> xi = <span class="hljs-number">0.5</span> * (x0 + C / x0);<br>            <span class="hljs-keyword">if</span> (Math.abs(x0 - xi) &lt; <span class="hljs-number">1e-7</span>) &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            x0 = xi;<br>        &#125;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>) x0;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​有效的完全平方数-简单"><a href="#​有效的完全平方数-简单" class="headerlink" title="​有效的完全平方数(简单)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/valid-perfect-square/">有效的完全平方数(简单)</a></h2><blockquote>
+<p>二分查找</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPerfectSquare</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = num, ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (l &lt;= r) &#123;<br>            <span class="hljs-keyword">int</span> mid = l + (r - l) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">long</span>) mid * mid == num) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">long</span>) mid * mid &lt;= num) &#123;<br>                ans = mid;<br>                l = mid + <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                r = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​搜索旋转排序数组-中等"><a href="#​搜索旋转排序数组-中等" class="headerlink" title="​搜索旋转排序数组(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">搜索旋转排序数组(中等)</a></h2><blockquote>
+<p>将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。 此时有序部分用二分法查找。无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">//思路：将数组一分为二，其中一定有一个是有序的，另一个可能是有序，也能是部分有序。此时有序部分用二分法查找。</span><br>    <span class="hljs-comment">//无序部分再一分为二，其中一个一定有序，另一个可能有序，可能无序。就这样循环.</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(nums.length==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(nums.length==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>]==target?<span class="hljs-number">0</span>:-<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = nums.length-<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left&lt;=right)&#123;<br>            <span class="hljs-keyword">int</span> mid = (left+right)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>(nums[mid]==target)<span class="hljs-keyword">return</span> mid;<br>            <span class="hljs-keyword">if</span>(nums[<span class="hljs-number">0</span>]&lt;=nums[mid])&#123;<span class="hljs-comment">//左区间有序</span><br>                <span class="hljs-keyword">if</span>(nums[<span class="hljs-number">0</span>]&lt;=target&amp;⌖&lt;nums[mid])right=mid-<span class="hljs-number">1</span>;<span class="hljs-comment">//target在左区间</span><br>                <span class="hljs-keyword">else</span> left=mid+<span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-comment">//右区间有序</span><br>                <span class="hljs-keyword">if</span>(nums[nums.length-<span class="hljs-number">1</span>]&gt;=target&amp;⌖&gt;nums[mid])left=mid+<span class="hljs-number">1</span>;<span class="hljs-comment">//target在右区间</span><br>                <span class="hljs-keyword">else</span> right=mid-<span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​搜索二维矩阵-中等"><a href="#​搜索二维矩阵-中等" class="headerlink" title="​搜索二维矩阵(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-a-2d-matrix/">搜索二维矩阵(中等)</a></h2><blockquote>
+<p>二分查找，将其看做一个有序一维数组,<code>row = idx / n ， col = idx % n</code></p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/search-matrix.png#crop=0&crop=0&crop=1&crop=1&id=RE69t&originHeight=686&originWidth=1836&originalType=binary%E2%88%B6=1&rotation=0&showTitle=false&status=done&style=none&title=" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">searchMatrix</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[][] matrix, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> m = matrix.length;<br>    <span class="hljs-keyword">if</span> (m == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">int</span> n = matrix[<span class="hljs-number">0</span>].length;<br><br>    <span class="hljs-comment">// 二分查找</span><br>    <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = m * n - <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> pivotIdx, pivotElement;<br>    <span class="hljs-keyword">while</span> (left &lt;= right) &#123;<br>      pivotIdx = (left + right) / <span class="hljs-number">2</span>;<br>      pivotElement = matrix[pivotIdx / n][pivotIdx % n];<br>      <span class="hljs-keyword">if</span> (target == pivotElement) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>      <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">if</span> (target &lt; pivotElement) right = pivotIdx - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">else</span> left = pivotIdx + <span class="hljs-number">1</span>;<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​搜索二维矩阵-中等-1"><a href="#​搜索二维矩阵-中等-1" class="headerlink" title="​搜索二维矩阵(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/">搜索二维矩阵(中等)</a></h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *左下角的元素是这一行中最小的元素，同时又是这一列中最大的元素。比较左下角元素和目标：</span><br><span class="hljs-comment">若左下角元素等于目标，则找到</span><br><span class="hljs-comment">若左下角元素大于目标，则目标不可能存在于当前矩阵的最后一行，问题规模可以减小为在去掉最后一行的子矩阵中寻找目标</span><br><span class="hljs-comment">若左下角元素小于目标，则目标不可能存在于当前矩阵的第一列，问题规模可以减小为在去掉第一列的子矩阵中寻找目标</span><br><span class="hljs-comment">若最后矩阵减小为空，则说明不存在</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">searchMatrix</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[][] matrix, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> x=matrix.length-<span class="hljs-number">1</span>,y=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(x&gt;=<span class="hljs-number">0</span>&amp;&amp;y&lt;matrix[<span class="hljs-number">0</span>].length)&#123;<br>            <span class="hljs-keyword">if</span>(matrix[x][y]==target)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(matrix[x][y]&gt;target)&#123;<br>                x--;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                y++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="​寻找旋转排序数组中的最小值-中等"><a href="#​寻找旋转排序数组中的最小值-中等" class="headerlink" title="​寻找旋转排序数组中的最小值(中等)"></a>​<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/">寻找旋转排序数组中的最小值(中等)</a></h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (n == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> nums[<span class="hljs-number">0</span>] == target ? <span class="hljs-number">0</span> : -<span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-comment">//二分查找</span><br>        <span class="hljs-keyword">int</span> l = <span class="hljs-number">0</span>, r = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span> (l &lt;= r) &#123;<br>            <span class="hljs-keyword">int</span> mid = (l + r) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span> (nums[mid] == target) &#123;<span class="hljs-comment">//是目标值直接返回</span><br>                <span class="hljs-keyword">return</span> mid;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (nums[<span class="hljs-number">0</span>] &lt;= nums[mid]) &#123;<span class="hljs-comment">//当前是单调递增区间</span><br>                <span class="hljs-keyword">if</span> (nums[<span class="hljs-number">0</span>] &lt;= target &amp;&amp; target &lt; nums[mid]) &#123;<span class="hljs-comment">//0-mid区间</span><br>                    r = mid - <span class="hljs-number">1</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//mid-r区间</span><br>                    l = mid + <span class="hljs-number">1</span>;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//当前不是单调递增区间</span><br>                <span class="hljs-keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[n - <span class="hljs-number">1</span>]) &#123;<span class="hljs-comment">//(mid)-(n-1)区间</span><br>                    l = mid + <span class="hljs-number">1</span>;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//l-mid区间</span><br>                    r = mid - <span class="hljs-number">1</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="递增的三元子序列"><a href="#递增的三元子序列" class="headerlink" title="递增的三元子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/increasing-triplet-subsequence/">递增的三元子序列</a></h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-comment">//双向遍历</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">increasingTriplet</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">3</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">int</span>[] leftMin = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];<br>        leftMin[<span class="hljs-number">0</span>] = nums[<span class="hljs-number">0</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            leftMin[i] = Math.min(leftMin[i - <span class="hljs-number">1</span>], nums[i]);<br>        &#125;<br>        <span class="hljs-keyword">int</span>[] rightMax = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];<br>        rightMax[n - <span class="hljs-number">1</span>] = nums[n - <span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = n - <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;<br>            rightMax[i] = Math.max(rightMax[i + <span class="hljs-number">1</span>], nums[i]);<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n - <span class="hljs-number">1</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[i] &gt; leftMin[i - <span class="hljs-number">1</span>] &amp;&amp; nums[i] &lt; rightMax[i + <span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>    <span class="hljs-comment">//贪心</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">increasingTriplet</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        <span class="hljs-keyword">int</span> first = nums[<span class="hljs-number">0</span>], second = Integer.MAX_VALUE;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">int</span> num = nums[i];<br>            <span class="hljs-keyword">if</span> (num &gt; second) &#123;<span class="hljs-comment">//遇到比第二个数大的直接返回结果</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (num &gt; first) &#123;<span class="hljs-comment">//否则first&lt;num&lt;=second更新second</span><br>                second = num;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<span class="hljs-comment">//否则num&lt;=first更新first</span><br>                first = num;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="寻找两个正序数组的中位数（hard"><a href="#寻找两个正序数组的中位数（hard" class="headerlink" title="寻找两个正序数组的中位数（hard)"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/">寻找两个正序数组的中位数</a>（hard)</h2><blockquote>
+<p>一般只要是要求时间复杂度是 O(log(m+n))的都是使用二分查找来实现。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 分割线的特点：</span><br><span class="hljs-comment">     * 1.m+n未偶数则取分割线左右两边的最近一个数求和/2得出中位数。</span><br><span class="hljs-comment">     * 2.m+n为奇数则分割线左边的那是数就是中位数。</span><br><span class="hljs-comment">     * 3.num1,num2的分割线左边总个数大致等于右边总个数(m+n等于奇数时多一，偶数相等)</span><br><span class="hljs-comment">     * 4.num1的分割线左边最大值(靠近分割线那个值)满足小于num2的分割线右边最小值(靠近分割线那个值)。</span><br><span class="hljs-comment">     *   同样的num2的分割线左边最大值(靠近分割线那个值)满足小于num1的分割线右边最小值(靠近分割线那个值)</span><br><span class="hljs-comment">     *   即：nums1[i-1] &lt;= nums2[j] &amp;&amp; nums2[j-1] &lt;= nums1[i]</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * 怎么找这两个数组的分割线：</span><br><span class="hljs-comment">     * 1.通过使用二分查找，确定num1的分割线i，num2分割线j。如果nums1[i-1] &gt; nums2[j] 则说明分割线在 i-1左边，否则在右边</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> nums1</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> nums2</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedianSortedArrays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums1, <span class="hljs-keyword">int</span>[] nums2)</span> </span>&#123;<br>        <span class="hljs-comment">// 始终保证nums1为较短的数组，nums1过长可能导致j为负数而越界</span><br>        <span class="hljs-keyword">if</span> (nums1.length &gt; nums2.length) &#123;<br>            <span class="hljs-keyword">int</span>[] temp = nums1;<br>            nums1 = nums2;<br>            nums2 = temp;<br>        &#125;<br><br>        <span class="hljs-keyword">int</span> m = nums1.length;<br>        <span class="hljs-keyword">int</span> n = nums2.length;<br><br>        <span class="hljs-comment">// m+n 为奇数，分割线要求左侧有 (m+n)/2 + 1 个元素</span><br>        <span class="hljs-comment">// m+n 为偶数，分割线要求左侧有 (m+n)/2     个元素</span><br>        <span class="hljs-comment">// 两种情况其实可以统一写作 (m+n+1)/2，表示对(m+n)/2向上取整</span><br>        <span class="hljs-comment">// 对整数来说，向上取整等于：(被除数 + (除数 - 1)) / 除数</span><br>        <span class="hljs-comment">// 也可以使用Math类中提供的库函数</span><br>        <span class="hljs-keyword">int</span> leftTotal = (m + n + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = m;<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-comment">// +1 向上取整避免 left + 1 = right 时可能无法继续缩小区间而陷入死循环</span><br>            <span class="hljs-keyword">int</span> i = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">int</span> j = leftTotal - i;<br><br>            <span class="hljs-comment">//要找最大i，使得nums1[i-1] &lt;= nums2[j]</span><br>            <span class="hljs-comment">//使用对立面缩小区间</span><br>            <span class="hljs-keyword">if</span> (nums1[i - <span class="hljs-number">1</span>] &gt; nums2[j]) &#123;<br>                <span class="hljs-comment">// [i+1, m]均不满足</span><br>                right = i - <span class="hljs-number">1</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// i满足说明[0, i-1]均不为满足条件的最大i，舍去以缩小区间</span><br>                left = i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//退出循环时left=right，表示最终nums1中分割线的位置</span><br>        <span class="hljs-keyword">int</span> i = left;<br>        <span class="hljs-comment">//nums2中分割线的位置</span><br>        <span class="hljs-keyword">int</span> j = leftTotal - left;<span class="hljs-comment">//因为相对而言合并两个数组后的分割线左边元素个数为(m + n + 1) / 2</span><br><br>        <span class="hljs-comment">//判断极端情况</span><br>        <span class="hljs-keyword">int</span> nums1LeftMax = (i == <span class="hljs-number">0</span>) ? Integer.MIN_VALUE : nums1[i - <span class="hljs-number">1</span>];  <span class="hljs-comment">//nums1分割线左边没有元素</span><br>        <span class="hljs-keyword">int</span> nums2LeftMax = (j == <span class="hljs-number">0</span>) ? Integer.MIN_VALUE : nums2[j - <span class="hljs-number">1</span>];  <span class="hljs-comment">//nums2分割线左边没有元素</span><br>        <span class="hljs-keyword">int</span> nums1RightMin = (i == m) ? Integer.MAX_VALUE : nums1[i];     <span class="hljs-comment">//nums1分割线右边没有元素</span><br>        <span class="hljs-keyword">int</span> nums2RightMin = (j == n) ? Integer.MAX_VALUE : nums2[j];     <span class="hljs-comment">//nums2分割线右边没有元素</span><br><br>        <span class="hljs-keyword">if</span> (((m + n) % <span class="hljs-number">2</span>) == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> Math.max(nums1LeftMax, nums2LeftMax);<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> (<span class="hljs-keyword">double</span>) ((Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin))) / <span class="hljs-number">2</span>;<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>​</p>
+<p>see：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/he-bing-yi-hou-zhao-gui-bing-guo-cheng-zhong-zhao-/">https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/he-bing-yi-hou-zhao-gui-bing-guo-cheng-zhong-zhao-/</a></p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">findMedianSortedArrays</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums1, <span class="hljs-keyword">int</span>[] nums2)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> leftLength = nums1.length;<br>        <span class="hljs-keyword">int</span> rightLength = nums2.length;<br>        <span class="hljs-comment">// 为了保证第一个数组比第二个数组小(或者相等)</span><br>        <span class="hljs-keyword">if</span> (leftLength &gt; rightLength) &#123;<br>            <span class="hljs-keyword">return</span> findMedianSortedArrays(nums2, nums1);<br>        &#125;<br>        <span class="hljs-comment">// 分割线左边的所有元素需要满足的个数 m + (n - m + 1) / 2;</span><br>        <span class="hljs-comment">// 两个数组长度之和为偶数时，当在长度之和上+1时，由于整除是向下取整，所以不会改变结果</span><br>        <span class="hljs-comment">// 两个数组长度之和为奇数时，按照分割线的左边比右边多一个元素的要求，此时在长度之和上+1，就会被2整除，会在原来的数</span><br>        <span class="hljs-comment">//的基础上+1，于是多出来的那个1就是左边比右边多出来的一个元素</span><br>        <span class="hljs-keyword">int</span> totalLeft = (leftLength + rightLength + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>        <span class="hljs-comment">// 在 nums1 的区间 [0, leftLength] 里查找恰当的分割线，</span><br>        <span class="hljs-comment">// 使得 nums1[i - 1] &lt;= nums2[j] &amp;&amp; nums2[j - 1] &lt;= nums1[i]</span><br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> right = leftLength;<br>        <span class="hljs-comment">// nums1[i - 1] &lt;= nums2[j]</span><br>        <span class="hljs-comment">//  此处要求第一个数组中分割线的左边的值 不大于(小于等于) 第二个数组中分割线的右边的值</span><br>        <span class="hljs-comment">// nums2[j - 1] &lt;= nums1[i]</span><br>        <span class="hljs-comment">//  此处要求第二个数组中分割线的左边的值 不大于(小于等于) 第一个数组中分割线的右边的值</span><br>        <span class="hljs-comment">// 循环条件结束的条件为指针重合，即分割线已找到</span><br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-comment">// 二分查找，此处为取第一个数组中左右指针下标的中位数，决定起始位置</span><br>            <span class="hljs-comment">// 此处+1首先是为了不出现死循环，即left永远小于right的情况</span><br>            <span class="hljs-comment">// left和right最小差距是1，此时下面的计算结果如果不加1会出现i一直=left的情况，而+1之后i才会=right</span><br>            <span class="hljs-comment">// 于是在left=i的时候可以破坏循环条件，其次下标+1还会保证下标不会越界，因为+1之后向上取整，保证了</span><br>            <span class="hljs-comment">// i不会取到0值，即i-1不会小于0</span><br>            <span class="hljs-comment">// 此时i也代表着在一个数组中左边的元素的个数</span><br>            <span class="hljs-keyword">int</span> i = left + (right - left + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>;<br>            <span class="hljs-comment">// 第一个数组中左边的元素个数确定后，用左边元素的总和-第一个数组中元素的总和=第二个元素中左边的元素的总和</span><br>            <span class="hljs-comment">// 此时j就是第二个元素中左边的元素的个数</span><br>            <span class="hljs-keyword">int</span> j = totalLeft - i;<br>            <span class="hljs-comment">// 此处用了nums1[i - 1] &lt;= nums2[j]的取反，当第一个数组中分割线的左边的值大于第二个数组中分割线的右边的值</span><br>            <span class="hljs-comment">// 说明又指针应该左移，即-1</span><br>            <span class="hljs-keyword">if</span> (nums1[i - <span class="hljs-number">1</span>] &gt; nums2[j]) &#123;<br>                <span class="hljs-comment">// 下一轮搜索的区间 [left, i - 1]</span><br>                right = i - <span class="hljs-number">1</span>;<br>                <span class="hljs-comment">// 此时说明条件满足，应当将左指针右移到i的位置，至于为什么是右移，请看i的定义</span><br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 下一轮搜索的区间 [i, right]</span><br>                left = i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// 退出循环时left一定等于right，所以此时等于left和right都可以</span><br>        <span class="hljs-comment">// 为什么left一定不会大于right?因为left=i。</span><br>        <span class="hljs-comment">// 此时i代表分割线在第一个数组中所在的位置</span><br>        <span class="hljs-comment">// nums1[i]为第一个数组中分割线右边的第一个值</span><br>        <span class="hljs-comment">// nums[i-1]即第一个数组中分割线左边的第一个值</span><br>        <span class="hljs-keyword">int</span> i = left;<br>        <span class="hljs-comment">// 此时j代表分割线在第二个数组中的位置</span><br>        <span class="hljs-comment">// nums2[j]为第一个数组中分割线右边的第一个值</span><br>        <span class="hljs-comment">// nums2[j-1]即第一个数组中分割线左边的第一个值</span><br>        <span class="hljs-keyword">int</span> j = totalLeft - i;<br>        <span class="hljs-comment">// 当i=0时，说明第一个数组分割线左边没有值，为了不影响</span><br>        <span class="hljs-comment">// nums1[i - 1] &lt;= nums2[j] 和 Math.max(nums1LeftMax, nums2LeftMax)</span><br>        <span class="hljs-comment">// 的判断，所以将它设置为int的最小值</span><br>        <span class="hljs-keyword">int</span> nums1LeftMax = i == <span class="hljs-number">0</span> ? Integer.MIN_VALUE : nums1[i - <span class="hljs-number">1</span>];<br>        <span class="hljs-comment">// 等i=第一个数组的长度时，说明第一个数组分割线右边没有值，为了不影响</span><br>        <span class="hljs-comment">// nums2[j - 1] &lt;= nums1[i] 和 Math.min(nums1RightMin, nums2RightMin)</span><br>        <span class="hljs-comment">// 的判断，所以将它设置为int的最大值</span><br>        <span class="hljs-keyword">int</span> nums1RightMin = i == leftLength ? Integer.MAX_VALUE : nums1[i];<br>        <span class="hljs-comment">// 当j=0时，说明第二个数组分割线左边没有值，为了不影响</span><br>        <span class="hljs-comment">// nums2[j - 1] &lt;= nums1[i] 和 Math.max(nums1LeftMax, nums2LeftMax)</span><br>        <span class="hljs-comment">// 的判断，所以将它设置为int的最小值</span><br>        <span class="hljs-keyword">int</span> nums2LeftMax = j == <span class="hljs-number">0</span> ? Integer.MIN_VALUE : nums2[j - <span class="hljs-number">1</span>];<br>        <span class="hljs-comment">// 等j=第二个数组的长度时，说明第二个数组分割线右边没有值，为了不影响</span><br>        <span class="hljs-comment">// nums1[i - 1] &lt;= nums2[j] 和 Math.min(nums1RightMin, nums2RightMin)</span><br>        <span class="hljs-comment">// 的判断，所以将它设置为int的最大值</span><br>        <span class="hljs-keyword">int</span> nums2RightMin = j == rightLength ? Integer.MAX_VALUE : nums2[j];<br>        <span class="hljs-comment">// 如果两个数组的长度之和为奇数，直接返回两个数组在分割线左边的最大值即可</span><br>        <span class="hljs-keyword">if</span> (((leftLength + rightLength) % <span class="hljs-number">2</span>) == <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> Math.max(nums1LeftMax, nums2LeftMax);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">// 如果两个数组的长度之和为偶数，返回的是两个数组在左边的最大值和两个数组在右边的最小值的和的二分之一</span><br>            <span class="hljs-comment">// 此处不能被向下取整，所以要强制转换为double类型</span><br>            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">double</span>) ((Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin))) / <span class="hljs-number">2</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/">算法相关</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/">刷题记录</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/19/yuque/ubx7qo/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法笔记-树型结构</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/19/yuque/ybn65e/">
+                        <span class="hidden-mobile">算法学习-动态规划</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'mikeygithub/commit-utterance');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     Copyright © 2017-2021 麦奇 Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> And <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> Core on Github Page 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        桂ICP备2020009931号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020009931"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>桂公网安备2020009931号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?74301a15e5497361e93588eeee69f4b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

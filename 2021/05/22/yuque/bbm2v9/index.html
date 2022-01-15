@@ -1,0 +1,1104 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer"/>
+  <link rel="apple-touch-icon" sizes="76x76" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/mikeygithub/jsDeliver@master/resource/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Mikey">
+  <meta name="keywords" content="">
+  
+  <title>读书笔记篇-Kubernetes权威指南 - 麦奇</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"mikeygithub.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":200}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":"74301a15e5497361e93588eeee69f4b2","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="麦奇" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>麦奇</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-image"></i>
+                照片
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/todo/">
+                <i class="iconfont icon-plan"></i>
+                代办
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/music/">
+                <i class="iconfont icon-music"></i>
+                音乐
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/atom.xml">
+                <i class="iconfont icon-rss"></i>
+                RSS
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-briefcase"></i>
+                其他
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://www.yuque.com/aichihongdouheyumi/blog">
+                    
+                    在线创作
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/about/">
+                    
+                    关于麦奇
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('https://bing.ioliu.cn/v1/rand') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="读书笔记篇-Kubernetes权威指南">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Mikey
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-22 23:24" pubdate>
+        2021年5月22日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      106
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">读书笔记篇-Kubernetes权威指南</h1>
+            
+            <div class="markdown-body">
+              <p> <br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1621697700831-44a13224-7288-4922-b9ad-193cdd83467a.png#clientId=u786613b4-8b95-4&from=paste&height=428&id=u836f86fc&margin=%5Bobject%20Object%5D&name=image.png&originHeight=428&originWidth=813&originalType=binary%E2%88%B6=1&size=392974&status=done&style=none&taskId=u7397687f-348e-486f-a119-8d443230440&width=813" srcset="/img/loading.gif" lazyload alt="image.png"><br>Kubernetes 之所以同时支持 Docker 和 Rocket 这两种互相竞争的容器技术，是有深刻的历史原因的。快速发展的 Docker 打败了谷歌名噪-时的开源容器技术 Imtfy,并迅速风摩世界。但是，作为-个已经对全球 IT 公司产生重要影响的技术，Docker 容器标准的制定不可能被任何-个公司主导。于是，CoreOS 推出 了与 Docker 抗衡的开源容器项目 Rocket,动员一些知名 IT 公司-起主导容器技术的标准化，并与谷歌共同发起基于 CoreOS+Rocket+Kubernetes 的新项 目 Tectonic, 使容器技术分裂态势加剧。最后，Linux 基 金会于 2015 年 6 月宜布成立开放容器技术项目。</p>
+<h1 id="第-1-章-Kubernetes-入门"><a href="#第-1-章-Kubernetes-入门" class="headerlink" title="第 1 章 Kubernetes 入门"></a>第 1 章 Kubernetes 入门</h1><h2 id="1-1-Kubernetes-是什么"><a href="#1-1-Kubernetes-是什么" class="headerlink" title="1.1 Kubernetes 是什么"></a>1.1 Kubernetes 是什么</h2><p>​</p>
+<blockquote>
+<p>他是一个全新的基于容器技术的分布式架构解决方案。确切地说，Kubernetes 是谷歌严格保密十几年的秘密武器—Borg 的一个开源版本。</p>
+</blockquote>
+<p>​</p>
+<p>Kubernetes 是-个完备的分布式系统支撑平台。Kubernetes 具有完备的集群管理能力，包括多层次的安全防护和准入机制、多租户应用支撑能力、透明的服务注册和服务发现机制、内建的智能负载均衡器、强大的故障发现和自我修复能力、服务滚动升级和在线扩容能力、可扩展的资源自动调度机制，以及多粒度的资源配额管理能力。同时, Kubernetes 提供了完善的管理工具，这些工具涵盖了包括开发、部署测试、运维监控在内的各个环节。因此，Kubernetes 是一个全新的基于容器技术的分布式架构解决方案，并且是一个一站式的完备的分布式系统开发和支撑平台。<br>​</p>
+<p>​</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622015650517-20e874aa-b24c-4cb0-9795-b7ad0fd90b28.png#clientId=u8daca5e1-04c4-4&from=paste&height=1984&id=u94dd642c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1984&originWidth=2409&originalType=binary%E2%88%B6=1&size=324401&status=done&style=none&taskId=u971334fd-13c0-4491-bf84-0feefe16a2a&width=2409" srcset="/img/loading.gif" lazyload alt="image.png"><br>一些特性：<br>​</p>
+<ul>
+<li>Service 的服务进程目前都基于 Socket 通信方式对外提供服务，比如 Redis、Memcache、MySQL、Web Server，或者是实现了某个具体业务的特定 TCP Server 进程。虽然一个 Service 通常由多个相关的服务进程提供服务，每个服务进程都有一个独立的 Endpoint（IP+Port）访问点，但 Kubernetes 能够让我们通过 Service（虚拟 Cluster IP +Service Port）连接到指定的 Service。</li>
+</ul>
+<p>​</p>
+<ul>
+<li>容器提供了强大的隔离功能，所以有必要把为 Service 提供服务的这组进程放入容器中进行隔离。为此，Kubernetes 设计了 Pod 对象，将每个服务进程都包装到相应的 Pod 中，使其成为在 Pod 中运行的一个容器 （Container）。为了建立 Service 和 Pod 间的关联关系，Kubernetes 首先给每个 Pod 都贴上一个标签（Label），给运行 MySQL 的 Pod 贴上 name=mysql 标签，给运行 PHP 的 Pod 贴上 name=php 标签，然后给相应的 Service 定义标签选择器（Label Selector），比如 MySQL Service 的标签选择器的选择条件为 name=mysql，意为该 Service 要作用于所有包含 name=mysql Label 的 Pod。这样一来，就巧妙解决了 Service 与 Pod 的关联问题。</li>
+</ul>
+<p>​</p>
+<h2 id="1-2-为什么要用-Kubernetes"><a href="#1-2-为什么要用-Kubernetes" class="headerlink" title="1.2 为什么要用 Kubernetes"></a>1.2 为什么要用 Kubernetes</h2><ul>
+<li>降低协作难度，减少运维成本。</li>
+<li>无需关注语言本身，完全面向微服务化架构。</li>
+<li>自动弹性扩容，应对大流量。</li>
+</ul>
+<h2 id="1-3-从一个简单的例子开始"><a href="#1-3-从一个简单的例子开始" class="headerlink" title="1.3 从一个简单的例子开始"></a>1.3 从一个简单的例子开始</h2><blockquote>
+<p>搭建一个简单 Java Web 引用程序</p>
+</blockquote>
+<h3 id="1-3-1-环境准备"><a href="#1-3-1-环境准备" class="headerlink" title="1.3.1 环境准备"></a>1.3.1 环境准备</h3><p><a href="https://mikeygithub.github.io/2021/05/17/yuque/am5lkt/">搭建环境及启动集群</a></p>
+<h3 id="1-3-2-启-动-MySQL-服务"><a href="#1-3-2-启-动-MySQL-服务" class="headerlink" title="1.3.2 启 动 MySQL 服务"></a>1.3.2 启 动 MySQL 服务</h3><p>​</p>
+<p>1.生成配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">kubectl create deployment mysql --image=mysql -o yaml --dry-run &gt; mysql-rc.yaml<br></code></pre></div></td></tr></table></figure>
+
+<p>2.配置文件(当然也可以在 kubernetes dashboard 上进行创建)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">ReplicationController</span>　<span class="hljs-comment">#副本控制器</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment">#RC的名称，全局唯一</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span> <span class="hljs-comment">#pod副本的期待数量</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment">#根据此模板创建的pod的副本(实例)</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">metadata:</span><br>      <span class="hljs-attr">labels:</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment">#pod副本拥有的标签,对应RC的Selector</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">containers:</span> <span class="hljs-comment">#容器定义配置</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment">#容器名称</span><br>          <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:5.6</span> <span class="hljs-comment">#镜像</span><br>          <span class="hljs-attr">ports:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">3306</span> <span class="hljs-comment">#端口</span><br>          <span class="hljs-attr">env:</span> <span class="hljs-comment">#环境变量</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">MYSQL_ROOT_PASSWORD</span><br>              <span class="hljs-attr">value:</span> <span class="hljs-string">&quot;123456&quot;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>3.查看创建结果<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622862903351-13e1b8a8-a547-4971-add4-c799bffb79b8.png#clientId=u75b3a40c-5a6e-4&from=paste&height=926&id=u0d58c3f0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=926&originWidth=1919&originalType=binary%E2%88%B6=1&size=123582&status=done&style=none&taskId=u25618dc0-1f4e-4b48-9cd4-8e5067c3702&width=1919" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">kubectl <span class="hljs-builtin-name">get</span> rc<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622863181352-d37ddc3c-4f7d-402f-9c68-9c9f6c0cb62a.png#clientId=u75b3a40c-5a6e-4&from=paste&height=93&id=ud093cd52&margin=%5Bobject%20Object%5D&name=image.png&originHeight=93&originWidth=396&originalType=binary%E2%88%B6=1&size=9496&status=done&style=none&taskId=u56fabb49-7bf0-4aa9-86e5-da85c833cc4&width=396" srcset="/img/loading.gif" lazyload alt="image.png"> 3.查看自动创建的 pod</p>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">kubectl <span class="hljs-builtin-name">get</span> pods<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622863316209-c821065e-50a6-4ca4-84f9-6dd25818c5c7.png#clientId=u75b3a40c-5a6e-4&from=paste&height=78&id=u92a6387e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=78&originWidth=450&originalType=binary%E2%88%B6=1&size=10567&status=done&style=none&taskId=u72c7c45b-f23c-4667-8ff1-536a79137cd&width=450" srcset="/img/loading.gif" lazyload alt="image.png"> 4.创建与之关联的 service</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span>　<span class="hljs-comment">#表明是K8s 的Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">mysql</span> <span class="hljs-comment">#Service的名称，全局唯一</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">3306</span> <span class="hljs-comment">#Service对外提供的端口号</span><br>  <span class="hljs-attr">selector:</span> <span class="hljs-comment">#Service对应的Pod拥有这里定义的标签</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">mysql</span><br></code></pre></div></td></tr></table></figure>
+
+<p>5.查看 Service<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622863695888-492f4254-4bda-4fd5-bca7-7449e6ce47db.png#clientId=u75b3a40c-5a6e-4&from=paste&height=920&id=u0a724105&margin=%5Bobject%20Object%5D&name=image.png&originHeight=920&originWidth=1919&originalType=binary%E2%88%B6=1&size=119036&status=done&style=none&taskId=ua6cad9ad-b0a3-4a31-a365-3135bf58845&width=1919" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">kubectl get svc<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622863683444-282fad28-7eb7-4343-aba8-fb359741688f.png#clientId=u75b3a40c-5a6e-4&from=paste&height=84&id=u4efa7f0e&margin=%5Bobject%20Object%5D&name=image.png&originHeight=84&originWidth=641&originalType=binary%E2%88%B6=1&size=15858&status=done&style=none&taskId=ubef1078b-5814-4367-a025-9e99674742b&width=641" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>可以看到对应的 IP 和端口，集群中的其他 Pod 就可以通过 Service 的 Cluster-ip 和端口访问它了</p>
+</blockquote>
+<h3 id="1-3-3-启动-Tomcat-应用"><a href="#1-3-3-启动-Tomcat-应用" class="headerlink" title="1.3.3 启动 Tomcat 应用"></a>1.3.3 启动 Tomcat 应用</h3><p>1.创建 RC</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">ReplicationController</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">myweb</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">2</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">myweb</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">metadata:</span><br>      <span class="hljs-attr">labels:</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">myweb</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">containers:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">myweb</span><br>          <span class="hljs-attr">image:</span> <span class="hljs-string">kubeguide/tomcat-app:v1</span><br>          <span class="hljs-attr">ports:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">8080</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs bash">kubectl create -f myweb-rc.yaml<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622864066128-b48391aa-2440-4092-bee7-c5b868a5197a.png#clientId=u75b3a40c-5a6e-4&from=paste&height=921&id=u66861f05&margin=%5Bobject%20Object%5D&name=image.png&originHeight=921&originWidth=1919&originalType=binary%E2%88%B6=1&size=128771&status=done&style=none&taskId=ua4982724-abd4-4f64-8d8f-16bdcf83eca&width=1919" srcset="/img/loading.gif" lazyload alt="image.png"> 2.创建 Service</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">myweb</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">NodePort</span><br>  <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br>      <span class="hljs-attr">nodePort:</span> <span class="hljs-number">30001</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">myweb</span><br></code></pre></div></td></tr></table></figure>
+
+<p>3.浏览器访问</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment">#IP+端口(注意这个是物理机的IP不是k8s分配的Cluster-IP)</span><br><span class="hljs-string">http://10.42.0.232:30001/demo/</span><br></code></pre></div></td></tr></table></figure>
+
+<h3 id="1-3-4-通过浏览器访问网页"><a href="#1-3-4-通过浏览器访问网页" class="headerlink" title="1.3.4 通过浏览器访问网页"></a>1.3.4 通过浏览器访问网页</h3><p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622865934440-8a6449c2-a8fe-4fdd-bf76-5d988ee378fe.png#clientId=u75b3a40c-5a6e-4&from=paste&height=1080&id=u567a0839&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1080&originWidth=1915&originalType=binary%E2%88%B6=1&size=367560&status=done&style=none&taskId=ua2434f8f-b7fe-4b51-9b61-e06812aeb06&width=1915" srcset="/img/loading.gif" lazyload alt="image.png"><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622866835519-c955d3f1-b222-4e05-9b23-e211348695f8.png#clientId=u75b3a40c-5a6e-4&from=paste&height=984&id=uacf27372&margin=%5Bobject%20Object%5D&name=image.png&originHeight=984&originWidth=1863&originalType=binary%E2%88%B6=1&size=101430&status=done&style=none&taskId=u24f19aad-e5ab-4b53-811f-4d28b39a1f6&width=1863" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="1-4-Kubernetes-的基本概念和术语"><a href="#1-4-Kubernetes-的基本概念和术语" class="headerlink" title="1.4 Kubernetes 的基本概念和术语"></a>1.4 Kubernetes 的基本概念和术语</h2><blockquote>
+<p>Kubernetes 中的大部分概念如 Node、Pod、Replication Controller、Service 等都可以被看作一种资源对象，几乎所有资源对象都可以通过 Kubernetes 提供的 kubectl 工具（或者 API 编程调用）执行增、删、改、查等操作并将其保存在 etcd 中持久化存储。</p>
+</blockquote>
+<h3 id="1-4-1-Master"><a href="#1-4-1-Master" class="headerlink" title="1.4.1 Master"></a>1.4.1 Master</h3><blockquote>
+<p>集群控制节点，Kubernetes 的所有控制命令都发给它，它负责具体的执行过程。​Master 通常会占据一个<br>独立的服务器（高可用部署建议用 3 台服务器），主要原因是它太重要了，是整个集群的“首脑”，如果它宕机或者不可用，那么对集群内容器应用的管理都将失效。</p>
+</blockquote>
+<p>在 Master 上运行着以下关键进程。</p>
+<ul>
+<li>Kubernetes API Server（kube-apiserver）：提供了 HTTP Rest 接口的关键服务进程，是 Kubernetes 里所有资源的增、删、改、查等操作的唯一入口，也是集群控制的入口进程。</li>
+<li>Kubernetes Controller Manager（kube-controller-manager）： Kubernetes 里所有资源对象的自动化控制中心，可以将其理解为资源对象的“大总管”。</li>
+<li>Kubernetes Scheduler（kube-scheduler）：负责资源调度（Pod 调度）的进程，相当于公交公司的“调度室”。</li>
+</ul>
+<p>另外，在 Master 上通常还需要部署 etcd 服务，因为 Kubernetes 里的所有资源对象的数据都被保存在 etcd 中。</p>
+<h3 id="1-4-2-Node"><a href="#1-4-2-Node" class="headerlink" title="1.4.2 Node"></a>1.4.2 Node</h3><blockquote>
+<p>每个 Node 都会被 Master 分配一些工作负载（Docker 容器），当某个 Node 宕机时，其上的工作负载会被 Master 自动转移到其他节点上。</p>
+</blockquote>
+<p>在每个 Node 上都运行着以下关键进程。</p>
+<ul>
+<li>kubelet：负责 Pod 对应的容器的创建、启停等任务，同时与 Master 密切协作，实现集群管理的基本功能。</li>
+<li>kube-proxy：实现 Kubernetes Service 的通信与负载均衡机制的重要组件。</li>
+<li>Docker Engine（docker）：Docker 引擎，负责本机的容器创建和管理工作。</li>
+</ul>
+<p>​</p>
+<p>查看所有 node 列表</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">kubectl get nodes<br></code></pre></div></td></tr></table></figure>
+
+<p>查看某个 node 的具体信息</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">kubectl describe node &lt;node_name&gt;<br></code></pre></div></td></tr></table></figure>
+
+<p>展示了 Node 的如下关键信息：</p>
+<ul>
+<li>Node 的基本信息：名称、标签、创建时间等。</li>
+<li>Node 当前的运行状态：Node 启动后会做一系列的自检工作比如磁盘空间是否不足（DiskPressure）、内存是否不足 （MemoryPressure）、网络是否正常（NetworkUnavailable）、PID 资源是否充足（PIDPressure）。在一切正常时设置 Node 为 Ready 状态 （Ready=True），该状态表示 Node 处于健康状态，Master 将可以在其上调度新的任务了（如启动 Pod）。</li>
+<li>Node 的主机地址与主机名。</li>
+<li>Node 上的资源数量：描述 Node 可用的系统资源，包括 CPU、 内存数量、最大可调度 Pod 数量等。</li>
+<li>Node 可分配的资源量：描述 Node 当前可用于分配的资源量。</li>
+<li>主机系统信息：包括主机 ID、系统 UUID、Linux kernel 版本号、操作系统类型与版本、Docker 版本号、kubelet 与 kube-proxy 的版本号等。</li>
+<li>当前运行的 Pod 列表概要信息。</li>
+<li>已分配的资源使用概要信息，例如资源申请的最低、最大允许使用量占系统总量的百分比。</li>
+<li>​Node 相关的 Event 信息。</li>
+</ul>
+<h3 id="1-4-3-Pod"><a href="#1-4-3-Pod" class="headerlink" title="1.4.3 Pod"></a>1.4.3 Pod</h3><blockquote>
+<p>其根基容器为 Pause</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622990490782-c6ceac53-4451-4539-9c58-815f98fcb223.png#clientId=ufe2744ca-714f-4&from=paste&height=306&id=u928918a6&margin=%5Bobject%20Object%5D&name=image.png&originHeight=306&originWidth=436&originalType=binary%E2%88%B6=1&size=64551&status=done&style=none&taskId=ub3f06974-7b80-4681-9984-5226df76f6c&width=436" srcset="/img/loading.gif" lazyload alt="image.png"><br>Kubernetes 为每个 Pod 都分配了唯一的 IP 地址，称之为 Pod IP，一个 Pod 里的多个容器共享 Pod IP 地址。Kubernetes 要求底层网络支持集群内任意两个 Pod 之间的 TCP/IP 直接通信，这通常采用虚拟二层网络技术来<br>实现，例如 Flannel、Open vSwitch 等，因此我们需要牢记一点：在 Kubernetes 里，一个 Pod 里的容器与另外主机上的 Pod 容器能够直接通信。<br>​</p>
+<p>Pod 其实有两种类型：普通的 Pod 及静态 Pod（Static Pod）。后者比较特殊，它并没被存放在 Kubernetes 的 etcd 存储里，而是被存放在某个具体的 Node 上的一个具体文件中，并且只在此 Node 上启动、运行。而普通的 Pod 一旦被创建，就会被放入 etcd 中存储，随后会被 Kubernetes Master 调度到某个具体的 Node 上并进行绑定（Binding），随后该 Pod 被对应的 Node 上的 kubelet 进程实例化成一组相关的 Docker 容器并启动。在默认情况下，当 Pod 里的某个容器停止时，Kubernetes 会自动检测到这个问题并且重新启动这个 Pod（重启 Pod 里的所有容器），如果 Pod 所在的 Node 宕机，就会将这个 Node 上的所有 Pod 重新调度到其他节点上。 Pod、容器与 Node 的关系如图：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622991811497-c01821d9-7533-4d5f-85d4-1c55d94e9d36.png#clientId=ufe2744ca-714f-4&from=paste&height=298&id=u2c89a608&margin=%5Bobject%20Object%5D&name=image.png&originHeight=298&originWidth=539&originalType=binary%E2%88%B6=1&size=75998&status=done&style=none&taskId=ub8ad7d26-6dd1-4bcd-8e19-4a31c3fd1af&width=539" srcset="/img/loading.gif" lazyload alt="image.png"><br>Pod 资源文件定义</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">apiVersion: v1<br>kind: Pod<br>metadata :<br>  name: myweb<br>  labels:<br>	name: myweb<br>spec :<br>  containers:<br>  - name: myweb<br>	image: kubeguide/ tomcat- app:v1<br>    ports:<br>    - containerPort: <span class="hljs-number">8080</span><br>    env :<br>	- name: MYSQL SERVICE HOST<br>	value: <span class="hljs-string">&#x27;mysql&#x27;</span><br>	- name: MYSQL SERVICE PORT<br>    value: <span class="hljs-string">&#x27;3306&#x27;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>Event：</p>
+<blockquote>
+<p>Event 是一个事件的记录，记录了事件的最早产生时间、最后重现时间、重复次数、发起者、类型，以及导致此事件的原因等众多信息。Event 通常会被关联到某个具体的资源对象上，是排查故障的重要参考信息，之前我们看到 Node 的描述信息包括了 Event，而 Pod 同样有 Event 记录，当我们发现某个 Pod 迟迟无法创建时，可以用<code>kubectl describe pod xxxx</code>来查看它的描述信息，以定位问题的成因，比如下面这个 Event 记录信息表明 Pod 里的一个容器被探针检测为失败一次：</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1622992693786-423482f9-1733-4b7b-9767-b9033188badd.png#clientId=ufe2744ca-714f-4&from=paste&height=224&id=u46b3f3bf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=224&originWidth=678&originalType=binary%E2%88%B6=1&size=45998&status=done&style=none&taskId=u5b73b613-6d23-48b7-b7fa-df2036b8a0e&width=678" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>k8s 分配资源以 m 为单位，其中 100-300m 表示占用 0.1-0.3 个 CPU</p>
+</blockquote>
+<p>​</p>
+<blockquote>
+<p>在 k8s 中一个计算资源进行配额限制需要设置以下两个参数</p>
+</blockquote>
+<ul>
+<li>Requests：该资源的最小申请量，系统必须满足要求。</li>
+<li>Limits：该资源最大允许使用的量，不能被突破，当容器试图使用超过这个量的资源时，可能会被 Kubernetes“杀掉”并重启。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623029832711-16f6055d-7fd8-4466-aebf-71992ef8b81a.png#clientId=u83b58e58-0218-4&from=paste&height=173&id=ud50ce463&margin=%5Bobject%20Object%5D&name=image.png&originHeight=173&originWidth=424&originalType=binary%E2%88%B6=1&size=11352&status=done&style=none&taskId=u1e662aa4-e1c2-402d-aa9d-bd3ff418780&width=424" srcset="/img/loading.gif" lazyload alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623029851744-94b1b5b1-3148-40b3-8421-c1b64182d613.png#clientId=u83b58e58-0218-4&from=paste&height=190&id=u83de06a0&margin=%5Bobject%20Object%5D&name=image.png&originHeight=190&originWidth=389&originalType=binary%E2%88%B6=1&size=29115&status=done&style=none&taskId=uc8f67322-57fc-4491-baef-f85e5741ef3&width=389" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="1-4-4-Label"><a href="#1-4-4-Label" class="headerlink" title="1.4.4 Label"></a>1.4.4 Label</h3><blockquote>
+<p>一个 Label 由（key=value）的键值对组成，其中 key、value 由用户自己定义， Label 的定义可以是在各种资源上，Node、Pod、Service、RC 等。Label 通常在资源对象定义时确定，也可以在对象创建后动态添加或者删除</p>
+</blockquote>
+<p>​</p>
+<p>常用的 Label 示例<br>​</p>
+<ul>
+<li>版本标签：”release”:”stable”、”release”:”canary”。</li>
+<li>环境标签：”environment”:”dev”、”environment”:”qa”、”environment”:”production”。</li>
+<li>架构标签：”tier”:”frontend”、”tier”:”backend”、”tier”:”middleware”。</li>
+<li>分区标签：”partition”:”customerA”、”partition”:”customerB”。</li>
+<li>质量管控标签：”track”:”daily”、”track”:”weekly”。</li>
+</ul>
+<p>​</p>
+<p>​</p>
+<p>Label Selector 可以被类比为 SQL 语句中的 where 查询条件，例如，name=redis-slave 这个 Label Selector 作用于 Pod 时，可以被类比为</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> pod <span class="hljs-keyword">where</span> pod’s name <span class="hljs-operator">=</span>‘redis<span class="hljs-operator">-</span>slave’<br></code></pre></div></td></tr></table></figure>
+
+<p>这样的语句。<br>​</p>
+<p>当前有两种 Label Selector 表达式：基于等式的（Equality-based）和基于集合的（Set-based），前者采用等式类表达式匹配标签，下面是一些具体的例子。</p>
+<ul>
+<li>name=redis-slave：匹配所有具有标签 name=redis-slave 的资源对象。</li>
+<li>env!=production：匹配所有不具有标签 env=production 的资源对象，比如 env=test 就是满足此条件的标签之一。</li>
+</ul>
+<p>后者则使用集合操作类表达式匹配标签，下面是一些具体的例子。</p>
+<ul>
+<li>name in（redis-master, redis-slave）：匹配所有具有标签 name=redis-master 或者 name=redis-slave 的资源对象。</li>
+<li>name not in（php-frontend）：匹配所有不具有标签 name=php-frontend 的资源对象。</li>
+</ul>
+<p>可以通过多个 Label Selector 表达式的组合实现复杂的条件选择，多个表达式之间用“，”进行分隔即可，几个条件之间是“AND”的关系，即同时满足多个条件，比如下面的例子：<br>​</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql">name<span class="hljs-operator">=</span>redis<span class="hljs-operator">-</span>salve,env<span class="hljs-operator">!=</span>production<br>name noint &#123;php<span class="hljs-operator">-</span>frontend&#125;,env<span class="hljs-operator">!=</span>production<br></code></pre></div></td></tr></table></figure>
+
+<p>Labels 定义在 metadata 中</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql">apiVersion: v1<br>kind: Pod<br>metadata :<br>  name: myweb<br>  labels:<br>	name: myweb<br></code></pre></div></td></tr></table></figure>
+
+<p>管理对象 RC 和 Service 则通过 Selector 字段设置需要关联 Pod 的 Label：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623044657863-da44922e-e871-4dc5-b2ea-f1c8b9f8c96a.png#clientId=u83b58e58-0218-4&from=paste&height=323&id=u096ccef5&margin=%5Bobject%20Object%5D&name=image.png&originHeight=323&originWidth=426&originalType=binary%E2%88%B6=1&size=20029&status=done&style=none&taskId=u7a140974-52af-4ac6-b677-5c1597fe597&width=426" srcset="/img/loading.gif" lazyload alt="image.png"><br>​ 其他管理对象如 Deployment、ReplicaSet、DaemonSet 和 Job 则可以在 Selector 中使用基于集合的筛选条件定义，例如：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623044757114-245de64f-cefb-4a8e-a090-47109679735a.png#clientId=u83b58e58-0218-4&from=paste&height=101&id=uc6d7623c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=101&originWidth=430&originalType=binary%E2%88%B6=1&size=10868&status=done&style=none&taskId=u40919521-404a-4cf8-addd-fd9e3f3afe7&width=430" srcset="/img/loading.gif" lazyload alt="image.png"><br>matchLabels 用于定义一组 Label，与直接写在 Selector 中的作用相同；matchExpressions 用于定义一组基于集合的筛选条件，可用的条件运算符包括 In、NotIn、Exists 和 DoesNotExist。<br>​</p>
+<p>如果同时设置了 matchLabels 和 matchExpressions，则两组条件为 AND 关系，即需要同时满足所有条件才能完成 Selector 的筛选。<br>​</p>
+<p>Label Selector 在 Kubernetes 中的重要使用场景如下。<br>​</p>
+<ul>
+<li>kube-controller 进程通过在资源对象 RC 上定义的 Label Selector 来筛选要监控的 Pod 副本数量，使 Pod 副本数量始终符合预期设定的全自动控制流程。</li>
+<li>kube-proxy 进程通过 Service 的 Label Selector 来选择对应的 Pod，自动建立每个 Service 到对应 Pod 的请求转发路由表，从而实现 Service 的智能负载均衡机制。</li>
+<li>通过对某些 Node 定义特定的 Label，并且在 Pod 定义文件中使用 NodeSelector 这种标签调度策略，kube-scheduler 进程可以实现 Pod 定向调度的特性。</li>
+</ul>
+<h3 id="1-4-5-Replication-Controller"><a href="#1-4-5-Replication-Controller" class="headerlink" title="1.4.5 Replication Controller"></a>1.4.5 Replication Controller</h3><blockquote>
+<p>RC 定义了一个期望的场景，即声明某种 Pod 的副本数量在任意时刻都符合某个预期值，所以 RC 的定义包括如下几个部分。</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>Pod 期待的副本数量。</li>
+<li>用于筛选目标 Pod 的 Label Selector。</li>
+<li>当 Pod 的副本数量小于预期数量时，用于创建新 Pod 的 Pod 模板 （template）。</li>
+</ul>
+</blockquote>
+<p>​</p>
+<p>下面是一个完整的 RC 定义的例子，即确保拥有 tier=frontend 标签的这个 Pod（运行 Tomcat 容器）在整个 Kubernetes 集群中始终只有一个副本：<br>​</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623045883767-7ff23ccd-4fe7-4529-8ee0-79c9596f9e90.png#clientId=u83b58e58-0218-4&from=paste&height=365&id=udf139883&margin=%5Bobject%20Object%5D&name=image.png&originHeight=365&originWidth=431&originalType=binary%E2%88%B6=1&size=53771&status=done&style=none&taskId=u70860821-486d-4c98-849b-bb8c4649599&width=431" srcset="/img/loading.gif" lazyload alt="image.png"><br>在运行时，我们可以通过修改 RC 的副本数量，来实现 Pod 的动态缩放（Scaling），这可以通过执行 kubectl scale 命令来一键完成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql">kubectl scale re redis<span class="hljs-operator">-</span>salve <span class="hljs-comment">--replicas=3 scale</span><br></code></pre></div></td></tr></table></figure>
+
+<p>需要注意的是，删除 RC 并不会影响通过该 RC 已创建好的 Pod。为了删除所有 Pod，可以设置 replicas 的值为 0，然后更新该 RC。另外，kubectl 提供了 stop 和 delete 命令来一次性删除 RC 和 RC 控制的全部 Pod。<br>​</p>
+<p>在 Kubernetes 1.2 中，升级为另外一个新概念—Replica Set，官方解释其为“下一代的 RC”。Replica Set 与 RC 当前的唯一区别是，Replica Sets 支持基于集合的 Label selector（Set-based selector），而 RC 只支持基于等式的 Label Selector（equality-based selector），这使得 Replica Set 的功能更强。下面是等价于之前 RC 例子的 Replica Set 的定义（省去了 Pod 模板部分的内容）：<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623065703452-eb9674f1-4187-494a-ae16-4c633cdd81b5.png#clientId=u83b58e58-0218-4&from=paste&height=365&id=u5c16ed81&margin=%5Bobject%20Object%5D&name=image.png&originHeight=365&originWidth=831&originalType=binary%E2%88%B6=1&size=120912&status=done&style=none&taskId=ubf2848dd-26f9-4784-a724-6e2a906aaa5&width=831" srcset="/img/loading.gif" lazyload alt="image.png"><br>kubectl 命令行工具适用于 RC 的绝大部分命令同样适用于 ReplicaSet。此外，我们当前很少单独使用 Replica Set，它主要被 Deployment 这个更高层的资源对象所使用，从而形成一整套 Pod 创建、删除、更新的编排机制。我们在使用 Deployment 时，无须关心它是如何创建和维护 Replica Set 的，这一切都是自动发生的。<br>​</p>
+<p>RC（Replica Set）的一些特性与作用。<br>​</p>
+<ul>
+<li>在大多数情况下，我们通过定义一个 RC 实现 Pod 的创建及副本数量的自动控制。</li>
+<li>在 RC 里包括完整的 Pod 定义模板。</li>
+<li>RC 通过 Label Selector 机制实现对 Pod 副本的自动控制。</li>
+<li>通过改变 RC 里的 Pod 副本数量，可以实现 Pod 的扩容或缩容。</li>
+<li>通过改变 RC 里 Pod 模板中的镜像版本，可以实现 Pod 的滚动升级。</li>
+</ul>
+<h3 id="1-4-6-Deployment"><a href="#1-4-6-Deployment" class="headerlink" title="1.4.6 Deployment"></a>1.4.6 Deployment</h3><blockquote>
+<p>Deployment 极度相似。</p>
+</blockquote>
+<p>​</p>
+<p>Deployment 相对于 RC 的一个最大升级是我们可以随时知道当前 Pod“部署”的进度。实际上由于一个 Pod 的创建、调度、绑定节点及在目<br>标 Node 上启动对应的容器这一完整过程需要一定的时间，所以我们期待<br>系统启动 N 个 Pod 副本的目标状态，实际上是一个连续变化的“部署过<br>程”导致的最终状态。<br>​</p>
+<p>Deployment 的典型使用场景有以下几个：<br>​</p>
+<ul>
+<li>创建一个 Deployment 对象来生成对应的 Replica Set 并完成 Pod 副本的创建。</li>
+<li>检查 Deployment 的状态来看部署动作是否完成（Pod 副本数量是否达到预期的值）。</li>
+<li>更新 Deployment 以创建新的 Pod（比如镜像升级）。</li>
+<li>如果当前 Deployment 不稳定，则回滚到一个早先的 Deployment 版本。</li>
+<li>暂停 Deployment 以便于一次性修改多个 PodTemplateSpec 的配置项，之后再恢复 Deployment，进行新的发布。</li>
+<li>扩展 Deployment 以应对高负载。</li>
+<li>查看 Deployment 的状态，以此作为发布是否成功的指标。</li>
+<li>清理不再需要的旧版本 ReplicaSets。</li>
+</ul>
+<blockquote>
+<p>Deployment 的定义和 RC 也极度相似</p>
+</blockquote>
+<p>​</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623067286569-305c8f34-f091-4476-bd46-33cc0c95e843.png#clientId=u83b58e58-0218-4&from=paste&height=82&id=u60bb0c44&margin=%5Bobject%20Object%5D&name=image.png&originHeight=82&originWidth=561&originalType=binary%E2%88%B6=1&size=26419&status=done&style=none&taskId=u6f630de0-ae7d-4c73-a87c-c076e7742d9&width=561" srcset="/img/loading.gif" lazyload alt="image.png"><br>完整案例</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">extensions/v1beta1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Deployment</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">frontend</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">matchLabels:</span><br>      <span class="hljs-attr">tier:</span> <span class="hljs-string">frontend</span><br>    <span class="hljs-attr">matchExpressions:</span><br>      <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">key:</span> <span class="hljs-string">tier</span>, <span class="hljs-attr">oprator:</span> <span class="hljs-string">In</span>, <span class="hljs-attr">values:</span> [<span class="hljs-string">frontend</span>] &#125;<br>    <span class="hljs-attr">template:</span><br>      <span class="hljs-attr">metadata:</span><br>        <span class="hljs-attr">labels:</span><br>          <span class="hljs-attr">app:</span> <span class="hljs-string">app-demo</span><br>          <span class="hljs-attr">tier:</span> <span class="hljs-string">frontend</span><br>      <span class="hljs-attr">spec:</span><br>        <span class="hljs-attr">containers:</span><br>          <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">tomcat-demo</span><br>            <span class="hljs-attr">image:</span> <span class="hljs-string">tomcat</span><br>            <span class="hljs-attr">imagePullPolicy:</span> <span class="hljs-string">IfNotPresent</span><br>            <span class="hljs-attr">ports:</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">8080</span><br></code></pre></div></td></tr></table></figure>
+
+<p>创建 Deployment</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">kubectl</span> <span class="hljs-string">create</span> <span class="hljs-string">-f</span> <span class="hljs-string">tomcat-deployment.yaml</span><br></code></pre></div></td></tr></table></figure>
+
+<p>查看信息</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">kubectl</span> <span class="hljs-string">get</span> <span class="hljs-string">deployments</span><br></code></pre></div></td></tr></table></figure>
+
+<p>查看 rs</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">kubectl</span> <span class="hljs-string">get</span> <span class="hljs-string">rs</span><br></code></pre></div></td></tr></table></figure>
+
+<h3 id="1-4-7-Horizontal-Pod-Autoscaler"><a href="#1-4-7-Horizontal-Pod-Autoscaler" class="headerlink" title="1.4.7 Horizontal Pod Autoscaler"></a>1.4.7 Horizontal Pod Autoscaler</h3><blockquote>
+<p>通过手工执行 kubectl scale 命令，我们可以实现 Pod 扩容或缩容。如果仅仅到此为止，显然不符合谷歌对 Kubernetes 的定位目标—自动化、 智能化。</p>
+</blockquote>
+<p>​</p>
+<p>通过追踪分析指定 RC 控制的所有目标 Pod 的负载变化情况，来确定是否需要有针对性地调整目标 Pod 的副本数量，这是 HPA 的实现原理。当前，HPA 有以下两种方式作为 Pod 负载的度量指标。<br>​</p>
+<ul>
+<li>CPUUtilizationPercentage。<blockquote>
+<p>CPUUtilizationPercentage 是一个算术平均值，即目标 Pod 所有副本自身的 CPU 利用率的平均值。</p>
+</blockquote>
+</li>
+</ul>
+<p>具体例子<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623079352966-ced60de1-19d3-499b-9ce1-710b7e149815.png#clientId=u83b58e58-0218-4&from=paste&height=247&id=uccd49c82&margin=%5Bobject%20Object%5D&name=image.png&originHeight=247&originWidth=558&originalType=binary%E2%88%B6=1&size=29354&status=done&style=none&taskId=u9376b22b-ab07-4665-b9be-d86d8938444&width=558" srcset="/img/loading.gif" lazyload alt="image.png"><br>等价于</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">kubectl</span> <span class="hljs-string">autoscale</span> <span class="hljs-string">deployment</span> <span class="hljs-string">php-apache</span> <span class="hljs-string">--cpu-percent=90</span> <span class="hljs-string">--min=1</span> <span class="hljs-string">--max=10</span><br></code></pre></div></td></tr></table></figure>
+
+<p>​</p>
+<ul>
+<li>应用程序自定义的度量指标，比如服务在每秒内的相应请求数 （TPS 或 QPS）</li>
+</ul>
+<h3 id="1-4-8-StatefulSet"><a href="#1-4-8-StatefulSet" class="headerlink" title="1.4.8 StatefulSet"></a>1.4.8 StatefulSet</h3><p>背景</p>
+<blockquote>
+<p>在 Kubernetes 系统中，Pod 的管理对象 RC、Deployment、DaemonSet 和 Job 都面向无状态的服务。但现实中有很多服务是有状态的，特别是一些复杂的中间件集群，例如 MySQL 集群、MongoDB 集群、Akka 集群、ZooKeeper 集群等，这些应用集群有 4 个共同点。<br>​</p>
+</blockquote>
+<blockquote>
+<p>（1）每个节点都有固定的身份 ID，通过这个 ID，集群中的成员可以相互发现并通信。<br>（2）集群的规模是比较固定的，集群规模不能随意变动。<br>（3）集群中的每个节点都是有状态的，通常会持久化数据到永久存储中。<br>（4）如果磁盘损坏，则集群里的某个节点无法正常运行，集群功能受损。</p>
+</blockquote>
+<p>StatefulSet 从本质上来说，可以看作 Deployment/RC 的一个特殊变种，它有如下特性:<br>​</p>
+<ul>
+<li>StatefulSet 里的每个 Pod 都有稳定、唯一的网络标识，可以用来发现集群内的其他成员。假设 StatefulSet 的名称为 kafka，那么第 1 个 Pod 叫 kafka-0，第 2 个叫 kafka-1，以此类推。</li>
+<li>StatefulSet 控制的 Pod 副本的启停顺序是受控的，操作第 n 个 Pod 时，前 n-1 个 Pod 已经是运行且准备好的状态。</li>
+<li>StatefulSet 里的 Pod 采用稳定的持久化存储卷，通过 PV 或 PVC 来实现，删除 Pod 时默认不会删除 StatefulSet 相关的存储卷（为了保证数据的安全）。</li>
+</ul>
+<p>Headless Service 与普通 Service 的关键区别在于，它没有 Cluster IP，如果解析 Headless Service 的 DNS 域名，则返回的是该 Service 对应的全部 Pod 的 Endpoint 列表。StatefulSet 在 Headless Service 的基础上又为 StatefulSet 控制的每个 Pod 实例都创建了一个 DNS 域名，这个域名的格式为：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-string">$(podname).$(headless</span> <span class="hljs-string">service</span> <span class="hljs-string">name)</span><br></code></pre></div></td></tr></table></figure>
+
+<p>比如一个 3 节点的 Kafka 的 StatefulSet 集群对应的 Headless Service 的名称为 kafka，StatefulSet 的名称为 kafka，则 StatefulSet 里的 3 个 Pod 的 DNS 名称分别为 kafka-0.kafka、kafka-1.kafka、kafka-3.kafka，这些 DNS 名称可以直接在集群的配置文件中固定下来。</p>
+<h3 id="1-4-9-Service"><a href="#1-4-9-Service" class="headerlink" title="1.4.9 Service"></a>1.4.9 Service</h3><blockquote>
+<p>Service 服务也是 Kubernetes 里的核心资源对象之一，Kubernetes 里的每个 Service 其实就是我们经常提起的微服务架构中的一个微服务</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623080292711-998344f4-2f2a-4213-b50f-68280a9efa16.png#clientId=u83b58e58-0218-4&from=paste&height=251&id=u0bffac3d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=251&originWidth=550&originalType=binary%E2%88%B6=1&size=89979&status=done&style=none&taskId=u0728a840-f106-49a9-8a26-845b6750d74&width=550" srcset="/img/loading.gif" lazyload alt="image.png"><br>Kubernetes 的 Service 定义了一个服务的访问入口地址，前端的应用（Pod）通过这个入口地址访问其背后的一组由 Pod 副本组成的集群实例，Service 与其后端 Pod 副本集群之间则是通过 Label Selector 来实现无缝对接的。RC 的作用实际上是保证 Service 的服务能力和服务质量始终符合预期标准。<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623080389084-31370e03-11a8-4658-b881-b0b39069d7e0.png#clientId=u83b58e58-0218-4&from=paste&height=238&id=ue1de85fa&margin=%5Bobject%20Object%5D&name=image.png&originHeight=238&originWidth=455&originalType=binary%E2%88%B6=1&size=90074&status=done&style=none&taskId=u8ea96079-d2bf-403a-91f4-ed14e3af078&width=455" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Kubernetes 也遵循负载均衡做法，运行在每个 Node 上的 kube-proxy 进程其实就是一个智能的软件负载均衡器，负责把对 Service 的请求转发到后端的某个 Pod 实例上，并在内部实现服务的负载均衡与会话保持机制。但 Kubernetes 发明了一种很巧妙又影响深远的设计：</p>
+<blockquote>
+<p>Service 没有共用一个负载均衡器的 IP 地址，每个 Service 都被分配了一个全局唯一的虚拟 IP 地址，这个虚拟 IP 被称为 Cluster IP。这样一来，每个服务就变成了具备唯一 IP 地址的通信节点，服务调用就变成了最基础的 TCP 网络通信问题。</p>
+</blockquote>
+<p>我们知道，Pod 的 Endpoint 地址会随着 Pod 的销毁和重新创建而发生改变，因为新 Pod 的 IP 地址与之前旧 Pod 的不同。而 Service 一旦被创建，Kubernetes 就会自动为它分配一个可用的 Cluster IP，而且在 Service 的整个生命周期内，它的 Cluster IP 不会发生改变。于是，服务发现这个棘手的问题在 Kubernetes 的架构里也得以轻松解决：</p>
+<blockquote>
+<p>只要用 Service 的 Name 与 Service 的 Cluster IP 地址做一个 DNS 域名映射即可完美解决问题。</p>
+</blockquote>
+<p>​</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-string">kind：Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">tomcat-service</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">ports:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">tier:</span> <span class="hljs-string">frontend</span><br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># 启动实例</span><br><span class="hljs-string">kubectl</span> <span class="hljs-string">create</span> <span class="hljs-string">-f</span> <span class="hljs-string">tomcat-server.yaml</span><br><span class="hljs-comment"># 查看暴露的端口</span><br><span class="hljs-string">kubectl</span> <span class="hljs-string">get</span> <span class="hljs-string">endpoints</span><br><span class="hljs-comment"># 查看详细信息（Cluster IP）</span><br><span class="hljs-string">kubectl</span> <span class="hljs-string">get</span> <span class="hljs-string">svc</span> <span class="hljs-string">tomcat-service</span> <span class="hljs-string">-o</span> <span class="hljs-string">yaml</span><br></code></pre></div></td></tr></table></figure>
+
+<p>很多服务都存在多个端口的问题，通常一个端口提供业务服务，另外一个端口提供管理服务，比如 Mycat、Codis 等常见中间件。Kubernetes Service 支持多个 Endpoint，在存在多个 Endpoint 的情况下，要求每个 Endpoint 都定义一个名称来区分。下面是 Tomcat 多端口的 Service 定义样例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">tomcat-service</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">service-port</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">8005</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">shutdown-port</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">tier:</span> <span class="hljs-string">frontend</span><br></code></pre></div></td></tr></table></figure>
+
+<p>服务发现机制</p>
+<blockquote>
+<p>来 Kubernetes 通过 Add-On 增值包引入了 DNS 系统，把服务名作为 DNS 域名，这样程序就可以直接使用服务名来建立通信连接了。</p>
+</blockquote>
+<p>​</p>
+<ul>
+<li><p>Node IP：Node 的 IP 地址。</p>
+<blockquote>
+<p>​</p>
+</blockquote>
+</li>
+<li><p>Pod IP：Pod 的 IP 地址。</p>
+<blockquote>
+<p>​</p>
+</blockquote>
+</li>
+<li><p>Cluster IP：Service 的 IP 地址。</p>
+<blockquote>
+<p>Cluster IP 仅仅作用于 Kubernetes Service 这个对象，并由 Kubernetes 管理和分配 IP 地址（来源于 Cluster IP 地址池）。</p>
+</blockquote>
+</li>
+</ul>
+<p>◎ Cluster IP 无法被 Ping，因为没有一个“实体网络对象”来响应。<br>◎ Cluster IP 只能结合 Service Port 组成一个具体的通信端口，单独的 Cluster IP 不具备 TCP/IP 通信的基础，并且它们属于 Kubernetes 集群这样一个封闭的空间，集群外的节点如果要访问这个通信端口，则需要做一些额外的工作。<br>◎ 在 Kubernetes 集群内，Node IP 网、Pod IP 网与 Cluster IP 网之间的通信，采用的是 Kubernetes 自己设计的一种编程方式的特殊路由规则，与我们熟知的 IP 路由有很大的不同。<br>​</p>
+<p>Service 的 Cluster IP 属于 Kubernetes 集群内部的地址，无法在集群外部直接使用这个地址。那么矛盾来了：实际上在我们开发的业务系统中肯定多少有一部分服务是要提供给 Kubernetes 集群外部的应用或者用户来使用的，典型的例子就是 Web 端的服务模块，比如上面的 tomcat-service，那么用户怎么访问它？<br>采用 NodePort 是解决上述问题的最直接、有效的常见做法。以 tomcat-service 为例，在 Service 的定义里做如下扩展即可（见代码中的 type 部分）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">tomcat-service</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">NodePort</span><br>  <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">8080</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">service-port</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">tier:</span> <span class="hljs-string">frontend</span><br></code></pre></div></td></tr></table></figure>
+
+<p>其中，nodePort:31002 这个属性表明手动指定 tomcat-service 的 NodePort 为 31002，否则 Kubernetes 会自动分配一个可用的端口。接下来在浏览器里访问 http://<nodePortIP>:31002/，就可以看到 Tomcat 的欢迎界面了</p>
+<p>NodePort 的实现方式是在 Kubernetes 集群里的每个 Node 上都为需要外部访问的 Service 开启一个对应的 TCP 监听端口，外部系统只要用任意一个 Node 的 IP 地址+具体的 NodePort 端口号即可访问此服务，在任意 Node 上运行 netstat 命令，就可以看到有 NodePort 端口被监听：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623117947202-5cf2159c-a1ba-4a56-a682-aa6d434a8307.png#clientId=u2ced509c-70cf-4&from=paste&height=35&id=u3e5ebbff&margin=%5Bobject%20Object%5D&name=image.png&originHeight=35&originWidth=444&originalType=binary%E2%88%B6=1&size=5730&status=done&style=none&taskId=u81b383a0-b5f4-4ef3-aeb6-3bc3706f1f1&width=444" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="1-4-10-Job"><a href="#1-4-10-Job" class="headerlink" title="1.4.10 Job"></a>1.4.10 Job</h3><blockquote>
+<p>与 RC、Deployment、ReplicaSet、DaemonSet 类似，Job 也控制一组 Pod 容器。从这个角度来看，Job 也是一种特殊的 Pod 副本自动控制器，同时 Job 控制 Pod 副本与 RC 等控制器的工作机制有以下重要差别。</p>
+</blockquote>
+<p>​</p>
+<p>（1）Job 所控制的 Pod 副本是短暂运行的，可以将其视为一组 Docker 容器，其中的每个 Docker 容器都仅仅运行一次。当 Job 控制的所有 Pod 副本都运行结束时，对应的 Job 也就结束了。Job 在实现方式上与<br>RC 等副本控制器不同，Job 生成的 Pod 副本是不能自动重启的，对应 Pod 副本的 RestartPoliy 都被设置为 Never。因此，当对应的 Pod 副本都执行完成时，相应的 Job 也就完成了控制使命，即 Job 生成的 Pod 在 Kubernetes 中<br>是短暂存在的。Kubernetes 在 1.5 版本之后又提供了类似 crontab 的定时任务——CronJob，解决了某些批处理任务需要定时反复执行的问题。<br>​</p>
+<p>（2）Job 所控制的 Pod 副本的工作模式能够多实例并行计算，以 TensorFlow 框架为例，可以将一个机器学习的计算任务分布到 10 台机器上，在每台机器上都运行一个 worker 执行计算任务，这很适合通过 Job 生成 10 个 Pod 副本同时启动运算。</p>
+<h3 id="1-4-11-Volume"><a href="#1-4-11-Volume" class="headerlink" title="1.4.11 Volume"></a>1.4.11 Volume</h3><blockquote>
+<p>​Volume（存储卷）是 Pod 中能够被多个容器访问的共享目录。</p>
+</blockquote>
+<p>Kubernetes 的 Volume 概念、用途和目的与 Docker 的 Volume 比较类似，但两者不能等价。首先，Kubernetes 中的 Volume 被定义在 Pod 上，然后被一个 Pod 里的多个容器挂载到具体的文件目录下；其次，Kubernetes 中的<br>Volume 与 Pod 的生命周期相同，但与容器的生命周期不相关，当容器终止或者重启时，Volume 中的数据也不会丢失。最后，Kubernetes 支持多种类型的 Volume，例如 GlusterFS、Ceph 等先进的分布式文件系统。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623131618080-4d0c3302-c699-4d4f-939b-c72315255fd5.png#clientId=u2ced509c-70cf-4&from=paste&height=383&id=u126e9558&margin=%5Bobject%20Object%5D&name=image.png&originHeight=383&originWidth=648&originalType=binary%E2%88%B6=1&size=44054&status=done&style=none&taskId=u48dd0896-0dfc-4b2a-9f93-1bc801b8e0d&width=648" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Volume-类型"><a href="#Volume-类型" class="headerlink" title="Volume 类型"></a>Volume 类型</h3><h4 id="emptyDir"><a href="#emptyDir" class="headerlink" title="emptyDir"></a>emptyDir</h4><p>一个 emptyDir Volume 是在 Pod 分配到 Node 时创建的。从它的名称就可以看出，它的初始内容为空，并且无须指定宿主机上对应的目录文件，因为这是 Kubernetes 自动分配的一个目录，当 Pod 从 Node 上移除时，emptyDir 中的数据也会被永久删除。emptyDir 的一些用途如下。<br>◎ 临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留。<br>◎ 长时间任务的中间过程 CheckPoint 的临时保存目录。<br>◎ 一个容器需要从另一个容器中获取数据的目录（多容器共享目录）。<br>目前，用户无法控制 emptyDir 使用的介质种类。如果 kubelet 的配置是使用硬盘，那么所有 emptyDir 都将被创建在该硬盘上。Pod 在将来可以设置 emptyDir 是位于硬盘、固态硬盘上还是基于内存的 tmpfs 上，上面的例子便采用了 emptyDir 类的 Volume。<br>​</p>
+<h4 id="hostPath"><a href="#hostPath" class="headerlink" title="hostPath"></a>hostPath</h4><p>hostPath 为在 Pod 上挂载宿主机上的文件或目录，它通常可以用于以下几方面。<br>◎ 容器应用程序生成的日志文件需要永久保存时，可以使用宿主机的高速文件系统进行存储。<br>◎ 需要访问宿主机上 Docker 引擎内部数据结构的容器应用时，可以通过定义 hostPath 为宿主机/var/lib/docker 目录，使容器内部应用可以直接访问 Docker 的文件系统。在使用这种类型的 Volume 时，需要注意以下几点。<br>◎ 在不同的 Node 上具有相同配置的 Pod，可能会因为宿主机上的目录和文件不同而导致对 Volume 上目录和文件的访问结果不一致。<br>◎ 如果使用了资源配额管理，则 Kubernetes 无法将 hostPath 在宿主机上使用的资源纳入管理。</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">volumes:<br>- name: <span class="hljs-string">&quot;persistent-storage&quot;</span><br>  hostPaht:<br>	path: <span class="hljs-string">&quot;/data&quot;</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="gcePersistentDisk"><a href="#gcePersistentDisk" class="headerlink" title="gcePersistentDisk"></a>gcePersistentDisk</h4><p>使用这种类型的 Volume 表示使用谷歌公有云提供的永久磁盘（Persistent Disk，PD）存放 Volume 的数据，它与 emptyDir 不同，PD 上的内容会被永久保存，当 Pod 被删除时，PD 只是被卸载（Unmount），但不会被删除。需要注意的是，你需要先创建一个 PD，才能使用 gcePersistentDisk。 使用 gcePersistentDisk 时有以下一些限制条件。<br>◎ Node（运行 kubelet 的节点）需要是 GCE 虚拟机。<br>◎ 这些虚拟机需要与 PD 存在于相同的 GCE 项目和 Zone 中。<br>​</p>
+<p>通过 gcloud 命令即可创建一个 PD：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">gcloud compute disks create --size=500GB --zone=us-centrall my-data-disk<br></code></pre></div></td></tr></table></figure>
+
+<p>定义 gcePersistentDisk 类型的 Volume 的示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">volumes:<br>- name: test-volumes<br>  gcePersistentDisk:<br>	pdName: my-data-disk<br>    fsType: ext4<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="awsElasticBlockStore"><a href="#awsElasticBlockStore" class="headerlink" title="awsElasticBlockStore"></a>awsElasticBlockStore</h4><h4 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h4><blockquote>
+<p>使用 NFS 网络文件系统提供的共享目录存储数据时，我们需要在系统中部署一个 NFS Server。定义 NFS 类型的 Volume 的示例如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">volumes:<br>  - name: nfs<br>    nfs:<br>	  server: nfs-server.localhost<br>      path: <span class="hljs-string">&quot;/&quot;</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="其他类型的-Volume"><a href="#其他类型的-Volume" class="headerlink" title="其他类型的 Volume"></a>其他类型的 Volume</h4><p>◎ iscsi：使用 iSCSI 存储设备上的目录挂载到 Pod 中。<br>◎ flocker：使用 Flocker 管理存储卷。<br>◎ glusterfs：使用开源 GlusterFS 网络文件系统的目录挂载到 Pod 中。<br>◎ rbd：使用 Ceph 块设备共享存储（Rados Block Device）挂载到 Pod 中。<br>◎ gitRepo：通过挂载一个空目录，并从 Git 库 clone 一个 git repository 以供 Pod 使用。<br>◎ secret：一个 Secret Volume 用于为 Pod 提供加密的信息，你可以将定义在 Kubernetes 中的 Secret 直接挂载为文件让 Pod 访问。Secret Volume 是通过 TMFS（内存文件系统）实现的，这种类型的 Volume 总是不会被持久化的。</p>
+<h2 id="Persistent-Volume"><a href="#Persistent-Volume" class="headerlink" title="Persistent Volume"></a>Persistent Volume</h2><p>PV 可以被理解成 Kubernetes 集群中的某个网络存储对应的一块存储，它与 Volume 类似，但有以下区别。<br>​</p>
+<ul>
+<li>PV 只能是网络存储，不属于任何 Node，但可以在每个 Node 上访问。◎ PV 并不是被定义在 Pod 上的，而是独立于 Pod 之外定义的。</li>
+<li>PV 目前支持的类型包括：gcePersistentDisk、AWSElasticBlockStore、AzureFile、AzureDisk、FC（Fibre Channel）、Flocker、NFS、iSCSI、RBD（Rados Block Device）、CephFS、 Cinder、GlusterFS、VsphereVolume、Quobyte Volumes、VMware Photon、Portworx Volumes、ScaleIO Volumes 和 HostPath（仅供单机测试）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">apiVersion: v1<br>kind: PersistentVolume<br>metadata:<br>  name: pv0003<br>spec:<br>  capacity:<br>	storage: 5Gi<br>  accessModes:<br>	- ReadWriteOnce<br>  nfs:<br>	path: /somepath<br>    server: <span class="hljs-number">172.147</span><span class="hljs-number">.0</span><span class="hljs-number">.156</span><br></code></pre></div></td></tr></table></figure>
+
+<p>比较重要的是 PV 的 accessModes 属性，目前有以下类型。<br>​</p>
+<ul>
+<li>ReadWriteOnce：读写权限，并且只能被单个 Node 挂载。</li>
+<li>ReadOnlyMany：只读权限，允许被多个 Node 挂载。</li>
+<li>ReadWriteMany：读写权限，允许被多个 Node 挂载。</li>
+</ul>
+<p>​</p>
+<p>如果某个 Pod 想申请某种类型的 PV，则首先需要定义一个 PersistentVolumeClaim 对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">apiVersion: v1<br>kind: PersistentVolumeClaim<br>metadata:<br>  name: myclaim<br>spec:<br>  accessModes:<br>    - ReadWriterOnce<br>  resource:<br>	requests:<br>	  storage: 8Gi<br></code></pre></div></td></tr></table></figure>
+
+<p>这 Pod 的 Volume 定义中引用上述 PVC 即可</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">volumes:<br>  - name: mypd<br>    persistntVolumeClaim:<br>	  claimName: myclaim<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="Namespace"><a href="#Namespace" class="headerlink" title="Namespace"></a>Namespace</h2><blockquote>
+<p>Namespace（命名空间）是 Kubernetes 系统中的另一个非常重要的概念，Namespace 在很多情况下用于实现多租户的资源隔离。</p>
+</blockquote>
+<p>kubernetes 默认会创建一个 namespace，如果在创建资源时不指明 namespace 则默认在默认的 namespace 下。<br>​</p>
+<p>创建 namespace 为 development 的 namespace</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">apiVersion: v1<br>kind: Namespace<br>metadata:<br>  name: development<br></code></pre></div></td></tr></table></figure>
+
+<p>在创建资源对象时指定对应的 namespace</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">apiVersion: v1<br>kind: Pod<br>metadata:<br>  name: busybox<br>  namespace: development<br>spec:<br>  containers:<br>  - image: busybox<br>    commond:<br>	  - sleep<br>      - <span class="hljs-string">&quot;3306&quot;</span><br>    name: busybox<br></code></pre></div></td></tr></table></figure>
+
+<p>查看对应的 pod（需要指明 namespace）</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">kubectl get pods --namespace=development<br></code></pre></div></td></tr></table></figure>
+
+<h2 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h2><p>​</p>
+<p>Annotation（注解）与 Label 类似，也使用 key/value 键值对的形式进行定义。不同的是 Label 具有严格的命名规则，它定义的是 Kubernetes 对象的元数据（Metadata），并且用于 Label Selector。Annotation 则是用户<br>任意定义的附加信息，以便于外部工具查找。在很多时候，Kubernetes 的模块自身会通过 Annotation 标记资源对象的一些特殊信息。通常来说，用 Annotation 来记录的信息如下。</p>
+<ul>
+<li>build 信息、release 信息、Docker 镜像信息等，例如时间戳、release id 号、PR 号、镜像 Hash 值、Docker Registry 地址等。</li>
+<li>日志库、监控库、分析库等资源库的地址信息。</li>
+<li>程序调试工具信息，例如工具名称、版本号等。</li>
+<li>团队的联系信息，例如电话号码、负责人名称、网址等。</li>
+</ul>
+<h2 id="ConfigMap"><a href="#ConfigMap" class="headerlink" title="ConfigMap"></a>ConfigMap</h2><blockquote>
+<p>首先，把所有的配置项都当作 key-value 字符串，当然 value 可以来自某个文本文件，比如配置项 password=123456、user=root、host=192.168.8.4 用于表示连接 FTP 服务器的配置参数。这些配置项可以作为 Map 表中的一个项，整个 Map 的数据可以被持久化存储在 Kubernetes 的 Etcd 数据库中，然后提供 API 以方便 Kubernetes 相关组件或客户应用 CRUD 操作这些数据，上述专门用来保存配置参数的 Map 就是 Kubernetes ConfigMap 资源对象。</p>
+</blockquote>
+<p>接下来，Kubernetes 提供了一种内建机制，将存储在 etcd 中的 ConfigMap 通过 Volume 映射的方式变成目标 Pod 内的配置文件，不管目标 Pod 被调度到哪台服务器上，都会完成自动映射。进一步地，如果 ConfigMap 中的 key-value 数据被修改，则映射到 Pod 中的“配置文件”也会随之自动更新。于是，Kubernetes ConfigMap 就成了分布式系统中最为简单（使用方法简单，但背后实现比较复杂）且对应用无侵入的配置中心。ConfigMap 配置集中化的一种简单方案如图<br><img src="https://cdn.nlark.com/yuque/0/2021/png/2630542/1623163264502-dc3036a0-73fa-4bc8-af69-cd1f95c2d824.png#clientId=u2ced509c-70cf-4&from=paste&height=418&id=ud76a93f8&margin=%5Bobject%20Object%5D&name=image.png&originHeight=418&originWidth=784&originalType=binary%E2%88%B6=1&size=214401&status=done&style=none&taskId=u52bec702-6314-4b36-ba9f-859cc0fe88a&width=784" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h1 id="第-2-章-Kubernetes-安装配置指南"><a href="#第-2-章-Kubernetes-安装配置指南" class="headerlink" title="第 2 章 Kubernetes 安装配置指南"></a>第 2 章 Kubernetes 安装配置指南</h1><h2 id="安装-Kubernetes"><a href="#安装-Kubernetes" class="headerlink" title="安装 Kubernetes"></a>安装 Kubernetes</h2><p><a href="https://mikeygithub.github.io/2021/05/17/yuque/am5lkt/">https://mikeygithub.github.io/2021/05/17/yuque/am5lkt/</a></p>
+<h2 id="Kubeadm"><a href="#Kubeadm" class="headerlink" title="Kubeadm"></a>Kubeadm</h2><blockquote>
+<p>Kubernetes 快速搭建集群工具</p>
+</blockquote>
+<h2 id="Kubeadm-Config"><a href="#Kubeadm-Config" class="headerlink" title="Kubeadm Config"></a>Kubeadm Config</h2><p>kubeadm config 子命令提供了对这一组功能的支持：<br>​</p>
+<p>◎ kubeadm config upload from-file：由配置文件上传到集群中生成 ConfigMap。<br>◎ kubeadm config upload from-flags：由配置参数生成 ConfigMap。<br>◎ kubeadm config view：查看当前集群中的配置值。<br>◎ kubeadm config print init-defaults：输出 kubeadm init 默认参数文件的内容。<br>◎ kubeadm config print join-defaults：输出 kubeadm join 默认参数文件的内容。<br>◎ kubeadm config migrate：在新旧版本之间进行配置转换。<br>◎ kubeadm config images list：列出所需的镜像列表。<br>◎ kubeadm config images pull：拉取镜像到本地。<br>​</p>
+<p>​</p>
+<p>​</p>
+<p>​</p>
+<h1 id="第-3-章-深入掌握-Pod"><a href="#第-3-章-深入掌握-Pod" class="headerlink" title="第 3 章 深入掌握 Pod"></a>第 3 章 深入掌握 Pod</h1><p>第 4 章 深入掌握 Service<br>第 5 章 核心组件运行机制<br>第 6 章 深入分析集群安全机制<br>第 7 章 网络原理<br>第 8 章 共享存储原理<br>第 9 章 Kubernetes 开发指南<br>第 10 章 Kubernetes 集群管理<br>第 11 章 Trouble Shooting 指导<br>第 12 章 Kubernetes 开 发中的新功能</p>
+<h1 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h1>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%AF%87/">云原生篇</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Kubernetes/">Kubernetes</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/23/yuque/sby23l/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">读书笔记篇-费曼学习法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/19/yuque/zzlqli/">
+                        <span class="hidden-mobile">读书笔记篇-Java并发编程实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'mikeygithub/commit-utterance');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-x-md">
+    <div class="container custom post-custom mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" lazyload class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     Copyright © 2017-2021 麦奇 Powered by <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> And <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> Core on Github Page 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        桂ICP备2020009931号-1
+      </a>
+    </span>
+    
+      
+        <span>
+          <a
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2020009931"
+            rel="nofollow noopener"
+            class="beian-police"
+            target="_blank"
+          >
+            
+              <span style="visibility: hidden; width: 0">|</span>
+              <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+            
+            <span>桂公网安备2020009931号</span>
+          </a>
+        </span>
+      
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/mermaid.min.js" ></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({"theme":"default"});
+    }
+  </script>
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?74301a15e5497361e93588eeee69f4b2";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

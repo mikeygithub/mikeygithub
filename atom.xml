@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>麦奇</title>
+  <icon>https://mikeygithub.github.io/icon.png</icon>
+  
+  <link href="https://mikeygithub.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://mikeygithub.github.io/"/>
+  <updated>2022-01-15T14:15:03.811Z</updated>
+  <id>https://mikeygithub.github.io/</id>
+  
+  <author>
+    <name>Mikey</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>算法图解-像小说一样有趣的算法入门书</title>
+    <link href="https://mikeygithub.github.io/2022/01/02/yuque/ibikgw/"/>
+    <id>https://mikeygithub.github.io/2022/01/02/yuque/ibikgw/</id>
+    <published>2022-01-02T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:03.811Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="算法相关" scheme="https://mikeygithub.github.io/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/"/>
+    
+    
+    <category term="算法图解" scheme="https://mikeygithub.github.io/tags/%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Agent 独立于应用程序的代理程序</title>
+    <link href="https://mikeygithub.github.io/2021/12/29/yuque/ebpizv/"/>
+    <id>https://mikeygithub.github.io/2021/12/29/yuque/ebpizv/</id>
+    <published>2021-12-29T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:03.863Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Agent" scheme="https://mikeygithub.github.io/tags/Agent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法篇-字符串匹配算法</title>
+    <link href="https://mikeygithub.github.io/2021/12/22/yuque/yo02lt/"/>
+    <id>https://mikeygithub.github.io/2021/12/22/yuque/yo02lt/</id>
+    <published>2021-12-22T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.715Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;字符串匹配指的是一个字符串是否包含另一个字符串或者是求它匹配的下标&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;Brute-force-算法&quot;&gt;&lt;a href=&quot;#Brute-force-算法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="算法相关" scheme="https://mikeygithub.github.io/categories/%E7%AE%97%E6%B3%95%E7%9B%B8%E5%85%B3/"/>
+    
+    
+    <category term="算法学习" scheme="https://mikeygithub.github.io/tags/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记-Kubernetes学习笔记</title>
+    <link href="https://mikeygithub.github.io/2021/12/19/yuque/lbmrca/"/>
+    <id>https://mikeygithub.github.io/2021/12/19/yuque/lbmrca/</id>
+    <published>2021-12-19T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.723Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-k8s-基本概念&quot;&gt;&lt;a href=&quot;#1-k8s-基本概念&quot; class=&quot;headerlink&quot; title=&quot;1.k8s 基本概念&quot;&gt;&lt;/a&gt;1.k8s 基本概念&lt;/h1&gt;&lt;p&gt;​&lt;/p&gt;
+&lt;h1 id=&quot;2-搭建-k8s-集群&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="云原生篇" scheme="https://mikeygithub.github.io/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E7%AF%87/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://mikeygithub.github.io/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记-Protobuf快速入门</title>
+    <link href="https://mikeygithub.github.io/2021/11/25/yuque/nh44si/"/>
+    <id>https://mikeygithub.github.io/2021/11/25/yuque/nh44si/</id>
+    <published>2021-11-25T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.735Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="性能调优" scheme="https://mikeygithub.github.io/categories/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-代码精进之路-从码农到工匠</title>
+    <link href="https://mikeygithub.github.io/2021/11/22/yuque/hdi2o4/"/>
+    <id>https://mikeygithub.github.io/2021/11/22/yuque/hdi2o4/</id>
+    <published>2021-11-22T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.791Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="架构学习" scheme="https://mikeygithub.github.io/categories/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="软件设计" scheme="https://mikeygithub.github.io/tags/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-高性能MySQL</title>
+    <link href="https://mikeygithub.github.io/2021/11/11/yuque/isf8hi/"/>
+    <id>https://mikeygithub.github.io/2021/11/11/yuque/isf8hi/</id>
+    <published>2021-11-11T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.799Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="MySQL" scheme="https://mikeygithub.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记-接口防刷解决方案</title>
+    <link href="https://mikeygithub.github.io/2021/11/05/yuque/ywf2un/"/>
+    <id>https://mikeygithub.github.io/2021/11/05/yuque/ywf2un/</id>
+    <published>2021-11-05T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.823Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="接口防刷" scheme="https://mikeygithub.github.io/tags/%E6%8E%A5%E5%8F%A3%E9%98%B2%E5%88%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记-Spring Data JPA</title>
+    <link href="https://mikeygithub.github.io/2021/11/03/yuque/ebdg1a/"/>
+    <id>https://mikeygithub.github.io/2021/11/03/yuque/ebdg1a/</id>
+    <published>2021-11-03T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.895Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="JPA" scheme="https://mikeygithub.github.io/tags/JPA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>架构篇-从零开始学架构</title>
+    <link href="https://mikeygithub.github.io/2021/10/31/yuque/pw7bhp/"/>
+    <id>https://mikeygithub.github.io/2021/10/31/yuque/pw7bhp/</id>
+    <published>2021-10-31T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.139Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="架构学习" scheme="https://mikeygithub.github.io/categories/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="基础机构" scheme="https://mikeygithub.github.io/tags/%E5%9F%BA%E7%A1%80%E6%9C%BA%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>资源篇-极客时间相关课程</title>
+    <link href="https://mikeygithub.github.io/2021/10/31/yuque/usmkmh/"/>
+    <id>https://mikeygithub.github.io/2021/10/31/yuque/usmkmh/</id>
+    <published>2021-10-31T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:04.955Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习资源" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90/"/>
+    
+    
+    <category term="学习资料" scheme="https://mikeygithub.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-实现领域驱动设计</title>
+    <link href="https://mikeygithub.github.io/2021/10/06/yuque/xclu9z/"/>
+    <id>https://mikeygithub.github.io/2021/10/06/yuque/xclu9z/</id>
+    <published>2021-10-06T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.087Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="架构学习" scheme="https://mikeygithub.github.io/categories/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="领域驱动设计" scheme="https://mikeygithub.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记篇-关于DDD的相关笔记</title>
+    <link href="https://mikeygithub.github.io/2021/09/20/yuque/kfmzrl/"/>
+    <id>https://mikeygithub.github.io/2021/09/20/yuque/kfmzrl/</id>
+    <published>2021-09-20T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.179Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="架构学习" scheme="https://mikeygithub.github.io/categories/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="领域驱动" scheme="https://mikeygithub.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-领域驱动设计:软件核心复杂性因对之道</title>
+    <link href="https://mikeygithub.github.io/2021/09/09/yuque/alqlio/"/>
+    <id>https://mikeygithub.github.io/2021/09/09/yuque/alqlio/</id>
+    <published>2021-09-09T14:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.731Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="架构学习" scheme="https://mikeygithub.github.io/categories/%E6%9E%B6%E6%9E%84%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="领域驱动" scheme="https://mikeygithub.github.io/tags/%E9%A2%86%E5%9F%9F%E9%A9%B1%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>笔记篇-Java开发手册</title>
+    <link href="https://mikeygithub.github.io/2021/09/09/yuque/rl7ely/"/>
+    <id>https://mikeygithub.github.io/2021/09/09/yuque/rl7ely/</id>
+    <published>2021-09-09T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.739Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="代码规范" scheme="https://mikeygithub.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-设计模式</title>
+    <link href="https://mikeygithub.github.io/2021/09/05/yuque/kldfgo/"/>
+    <id>https://mikeygithub.github.io/2021/09/05/yuque/kldfgo/</id>
+    <published>2021-09-05T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.747Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://mikeygithub.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://mikeygithub.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读书篇-Head First设计模式</title>
+    <link href="https://mikeygithub.github.io/2021/09/04/yuque/cgiltv/"/>
+    <id>https://mikeygithub.github.io/2021/09/04/yuque/cgiltv/</id>
+    <published>2021-09-04T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.775Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://mikeygithub.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://mikeygithub.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java 8 中Consumer, Supplier, Predicate and Function的应用</title>
+    <link href="https://mikeygithub.github.io/2021/08/28/yuque/yi11qm/"/>
+    <id>https://mikeygithub.github.io/2021/08/28/yuque/yi11qm/</id>
+    <published>2021-08-28T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.795Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Lambda" scheme="https://mikeygithub.github.io/tags/Lambda/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学习笔记-UML类图关系</title>
+    <link href="https://mikeygithub.github.io/2021/08/21/yuque/rg8l8r/"/>
+    <id>https://mikeygithub.github.io/2021/08/21/yuque/rg8l8r/</id>
+    <published>2021-08-21T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.815Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://mikeygithub.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="UML类图" scheme="https://mikeygithub.github.io/tags/UML%E7%B1%BB%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式-责任链模式</title>
+    <link href="https://mikeygithub.github.io/2021/08/20/yuque/wdtv10/"/>
+    <id>https://mikeygithub.github.io/2021/08/20/yuque/wdtv10/</id>
+    <published>2021-08-20T09:24:22.000Z</published>
+    <updated>2022-01-15T14:15:05.823Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://mikeygithub.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="责任链模式" scheme="https://mikeygithub.github.io/tags/%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+</feed>
