@@ -36,7 +36,10 @@ jobs:
       - name: Generate files
         run: hexo generate
       - name: Deploy
-        run: hexo d
+        run: |
+          git config --global user.email "biaogejiushibiao@outlook.com"
+          git config --global user.name "mikeygithu"
+          hexo d
 #      - name: Deploy
 #        uses: peaceiris/actions-gh-pages@v3
 #        with:
