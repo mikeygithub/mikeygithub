@@ -15,7 +15,17 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+My main programming languages are:
 
-![Mikey's github stats](https://github-readme-stats.vercel.app/api?username=mikeygithub&theme=vue&show_icons=true)
-<!--![](https://github-readme-stats.vercel.app/api/top-langs/?username=Ehco1996&show_icons=true&layout=compact&theme=vue&hide_border=true&hide=html,css)-->
+  - Java
 
+My second programming languages are:
+
+  - Go
+  - Vue
+  
+![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mikeygithub&theme=github)
+![](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mikeygithub&theme=github)
+![](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=mikeygithub&theme=github)
+![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=mikeygithub&theme=github)
+![](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=mikeygithub&theme=github)
