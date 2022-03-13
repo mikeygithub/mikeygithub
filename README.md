@@ -18,11 +18,7 @@ Here are some ideas to get you started:
 My main programming languages are:
 
   - Java
-
-My second programming languages are:
-
   - Go
-  - Vue
   
 ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=mikeygithub&theme=github)
 ![](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=mikeygithub&theme=github)
